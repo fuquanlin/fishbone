@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.fql.fishbone.dao.mapper.RoleMapper">
+    <resultMap id="roleMap" type="cn.fql.fishbone.model.domain.Role">
+        <result column="id" property="id"/>
+        <result column="rolename" property="rolename"/>
+    </resultMap>
+
+    <sql id="selectAllColumns">
+        id,rolename
+    </sql>
+
+    <sql id="setAllColumns">
+        <set>
+            <if test="id != null">id = #{id},</if>
+            <if test="rolename != null">rolename = #{rolename},</if>
+        </set>
+    </sql>
+
+    <sql id="queryConditions">
+        <if test="id != null">and id = #{id}</if>
+        <if test="rolename != null">and rolename = #{rolename}</if>
+    </sql>
+
+</mapper>

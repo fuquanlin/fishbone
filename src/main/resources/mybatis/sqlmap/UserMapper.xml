@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.fql.fishbone.dao.mapper.UserMapper">
+    <resultMap id="userMap" type="cn.fql.fishbone.model.domain.User">
+        <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+    </resultMap>
+
+    <sql id="selectAllColumns">
+        id,username,password
+    </sql>
+
+    <sql id="setAllColumns">
+        <set>
+            <if test="id != null">id = #{id},</if>
+            <if test="username != null">username = #{username},</if>
+            <if test="password != null">password = #{password},</if>
+        </set>
+    </sql>
+
+    <sql id="queryConditions">
+        <if test="id != null">and id = #{id}</if>
+        <if test="username != null">and username = #{username}</if>
+    </sql>
+
+    <select id="getUserByName" parameterType="String" resultMap="userMap">
+        select
+        <include refid="selectAllColumns"/>
+        from `t_user` where username = #{username}
+    </select>
+
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id"
+            parameterType="cn.fql.fishbone.model.domain.User">
+        insert
+        into
+        `t_user`
+        <include refid="setAllColumns"/>
+    </insert>
+
+    <update id="updateUser" parameterType="cn.fql.fishbone.model.domain.User">
+        update
+        `t_user`
+        <include refid="setAllColumns"/>
+        where
+        id = #{id}
+    </update>
+
+    <delete id="deleteUser">
+        delete
+        from
+        `t_user`
+        where
+        id = #{id}
+    </delete>
+</mapper>

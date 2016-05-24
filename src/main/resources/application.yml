@@ -1,0 +1,12 @@
+logger.dir: /home/admin/
+
+#server       
+server:
+    port: 8080
+
+app:
+    name: fishbone
+    db:
+          url: jdbc:mysql://localhost:3306/fishbone?serverTimezone=UTC
+          username: root
+          password:
