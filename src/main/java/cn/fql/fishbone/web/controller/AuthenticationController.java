@@ -60,7 +60,7 @@ public class AuthenticationController {
         //验证是否登录成功
         if (currentUser.isAuthenticated()) {
             logger.info("用户[" + username + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
-            return "redirect:/user";
+            return "/welcome";
         } else {
             token.clear();
             return "redirect:/login";
