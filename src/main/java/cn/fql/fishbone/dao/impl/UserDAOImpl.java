@@ -2,9 +2,12 @@ package cn.fql.fishbone.dao.impl;
 
 import cn.fql.fishbone.dao.UserDAO;
 import cn.fql.fishbone.dao.mapper.UserMapper;
+import cn.fql.fishbone.model.domain.Role;
 import cn.fql.fishbone.model.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * Created by fuquanlin on 2016/5/23.
@@ -34,4 +37,6 @@ public class UserDAOImpl implements UserDAO {
     public void deleteUser(Integer id) {
         userMapper.deleteUser(id);
     }
+
+
 }

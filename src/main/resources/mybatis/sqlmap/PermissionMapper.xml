@@ -25,4 +25,11 @@
         <if test="username != null">and permissionname = #{permissionname}</if>
     </sql>
 
+    <select id="getPermissionsByRoleId" resultType="cn.fql.fishbone.model.domain.Permission">
+        SELECT
+        <include refid="selectAllColumns"/>
+        from t_permission
+        where role_id = #{id}
+    </select>
+
 </mapper>
