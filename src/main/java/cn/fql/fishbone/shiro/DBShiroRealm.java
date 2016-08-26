@@ -50,6 +50,7 @@ public class DBShiroRealm extends AuthorizingRealm {
                 }
             }
             info.setRoles(roleSet);
+            return info;
         }
         return null;
     }

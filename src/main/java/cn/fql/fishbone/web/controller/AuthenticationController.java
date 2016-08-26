@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -60,7 +61,7 @@ public class AuthenticationController {
         //验证是否登录成功
         if (currentUser.isAuthenticated()) {
             logger.info("用户[" + username + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
-            return "/welcome";
+            return "redirect:/welcome";
         } else {
             token.clear();
             return "redirect:/login";
@@ -68,17 +69,19 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    @ResponseBody
     public String logout(RedirectAttributes redirectAttributes) {
         //使用权限管理工具进行用户的退出，跳出登录，给出提示信息
         SecurityUtils.getSubject().logout();
         redirectAttributes.addFlashAttribute("message", "您已安全退出");
-        return "redirect:/login";
+        return "logout";
     }
 
-    @RequestMapping("/403")
+    @RequestMapping("/forbidden")
+    @ResponseBody
     public String unauthorizedRole(){
         logger.info("------没有权限-------");
-        return "403";
+        return "forbidden";
     }
 
 }
