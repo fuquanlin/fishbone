@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-controller="RootCtrl">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title ng-bind="title"></title>
 </head>
 <body>
+
+<div id="login" class="main" ng-if="!displayMain">
+    <div>
+        <span>username:</span>
+    </div>
+    <div>
+        <span>password:</span>
+    </div>
+</div>
+
+<div ui-view="main" class="main" ng-if="displayMain">
+
+</div>
+
+
+
+
+<script type="text/javascript" src="lib/angular/angular.js"></script>
+<script type="text/javascript" src="lib/angular-bootstrap/ui-bootstrap.js"></script>
+<script type="text/javascript" src="lib/ng-file-upload/ng-file-upload-all.min.js"></script>
+<script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="index.js"></script>
 
 </body>
 </html>
