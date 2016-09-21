@@ -42,10 +42,10 @@
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a ng-click="chooseMenu('user')">User Management</a>
+                            <a ng-click="chooseMenu('root.user')">User Management</a>
                         </li>
                         <li>
-                            <a ui-sref="chooseMenu('role')">Role Management</a>
+                            <a ui-sref="chooseMenu('root.role')">Role Management</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -57,5 +57,5 @@
     <!-- /.navbar-static-side -->
 </nav>
 
-<div id="page-content" ui-view>
+<div id="page-wrapper" ui-view>
 </div>

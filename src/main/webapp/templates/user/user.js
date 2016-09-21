@@ -3,7 +3,8 @@
 
     function config($stateProvider) {
         $stateProvider
-            .state('user', {
+            .state('root.user', {
+                url:"/user",
                 templateUrl: 'templates/user/user.tpl.html',
                 controller: 'UserCtrl'
             })
