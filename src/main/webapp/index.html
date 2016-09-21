@@ -3,30 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title ng-bind="title"></title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="lib/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="lib/sb-admin/app/styles/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
-<div id="login" class="main" ng-if="!displayMain">
-    <div>
-        <span>username:</span>
-    </div>
-    <div>
-        <span>password:</span>
+
+<div id="login" class="container" ng-if="!displayMain">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please Sign In</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                </label>
+                            </div>
+                            <!-- Change this to a button or input when using this as a form -->
+                            <div  class="btn btn-lg btn-success btn-block" ng-click="login()">Login</div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <div ui-view="main" class="main" ng-if="displayMain">
-
 </div>
 
 
 
 
 <script type="text/javascript" src="lib/angular/angular.js"></script>
+<script type="text/javascript" src="lib/angular-animate/angular-animate.js"></script>
+<script type="text/javascript" src="lib/angular-ui-router/release/angular-ui-router.js"></script>
 <script type="text/javascript" src="lib/angular-bootstrap/ui-bootstrap.js"></script>
 <script type="text/javascript" src="lib/ng-file-upload/ng-file-upload-all.min.js"></script>
 <script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script type="text/javascript" src="lib/metisMenu/dist/metisMenu.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script type="text/javascript" src="lib/sb-admin/app/js/sb-admin-2.js"></script>
+
 <script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="templates/main.js"></script>
+<script type="text/javascript" src="templates/user/user.js"></script>
 
 </body>
 </html>
