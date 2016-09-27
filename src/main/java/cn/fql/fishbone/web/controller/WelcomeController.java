@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/welcome")
 public class WelcomeController {
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "msg", method = RequestMethod.GET)
     @ResponseBody
-    public String welcome() {
-        return "welcome";
+    public String welcomeMsg() {
+        return "Welcome to Fiahbone UI";
     }
 }

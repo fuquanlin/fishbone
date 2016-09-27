@@ -1,22 +1,15 @@
 package cn.fql.fishbone.model.domain;
 
+import cn.fql.fishbone.model.domain.common.Base;
+
 import java.util.List;
 
 /**
  * Created by fuquanlin on 2016/5/23.
  */
-public class Role {
-    private Integer id;
+public class Role extends Base{
     private String roleName;
     private List<Permission> permissionList;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getRoleName() {
         return roleName;
