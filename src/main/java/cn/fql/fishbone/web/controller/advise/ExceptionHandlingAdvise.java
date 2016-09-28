@@ -24,7 +24,7 @@ public class ExceptionHandlingAdvise {
         if (e instanceof AuthorizationException) {
             return ResultBuilder.authorizationError(msg);
         } else if (e instanceof IllegalArgumentException) {
-            return ResultBuilder.queryParamError(msg);
+            return ResultBuilder.paramError(msg);
         }else if (e instanceof MethodArgumentNotValidException) {
             MethodArgumentNotValidException manve = (MethodArgumentNotValidException) e;
             String errorMsg = manve
@@ -38,7 +38,7 @@ public class ExceptionHandlingAdvise {
                                     .append(error.getDefaultMessage())
                                     .append(" "), StringBuffer::append)
                     .toString();
-            return ResultBuilder.queryParamError(errorMsg);
+            return ResultBuilder.paramError(errorMsg);
         }
 
         LOGGER.error("uncaught error", e);

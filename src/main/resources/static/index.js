@@ -21,7 +21,8 @@
             })
     }
 
-    function RootCtrl($log, $rootScope, $scope, $state) {
+    function RootCtrl($log, $rootScope, $scope, $state,CommonService) {
+        $scope.user = {};
         $rootScope.title = "Fishbone UI";
 
         $rootScope.displayMain = false;
@@ -30,15 +31,19 @@
 
         $scope.login = function () {
             $log.debug('Main loaded!');
-            $rootScope.displayMain = true;
-        }
+            CommonService.doLogin($scope.user,function () {
+                $rootScope.displayMain = true;
+            });
+        };
 
         $rootScope.showLoading = function () {
             $rootScope.isLoading = true;
-        }
+        };
+
         $rootScope.hideLoading = function () {
             $rootScope.isLoading = false;
-        }
+        };
+
         $rootScope.showToast = function (type, msg, handler, data, ifMoreShowtoast) {
             alert("todo");
         }
@@ -52,6 +57,7 @@
     angular.module('app', [
             'ui.router',
             'main',
+            'common.service',
             'welcome',
             'user',
             'user.service',

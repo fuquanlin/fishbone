@@ -2,4 +2,4 @@ var Settings = {
     DEBUG: true
 };
 
-Settings.API = "";
+Settings.API = "http://localhost:8080";

@@ -18,12 +18,6 @@ angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($p
                     var success = result["success"], errorCode = result['errorCode'], errorMsg = result["errorMsg"];
                     /* 处理异常 */
                     if (!success) {
-                        /* 需要重新登陆的错误处理 */
-                        if (need_login_error[String(errorCode)] === errorCode) {
-                            window.location = en_platform_apis.weblogin_login + escape(Settings.COOKIEAPI + "/ent-accept-cookie");
-                            return;
-                        }
-
                         /* weblogin返回的错误描述字段为error */
                         if(errorMsg == null){
                             errorMsg = result["error"];
@@ -33,6 +27,8 @@ angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($p
                             errorCode: errorCode,
                             errorMsg: errorMsg
                         };
+
+                        $rootScope.errorMsg = errorMsg;
 
                         $rootScope.showToast("error", msg);
                         console.log("throwableMsg :" + result["throwableMsg"]);

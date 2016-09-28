@@ -1,6 +1,8 @@
 package cn.fql.fishbone.web.controller;
 
 import cn.fql.fishbone.model.domain.User;
+import cn.fql.fishbone.model.domain.common.Result;
+import cn.fql.fishbone.util.ResultBuilder;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
@@ -25,12 +27,13 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public String login(User user) {
-
+    public Result login(User user) {
         String username = user.getUsername();
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
         //获取当前的Subject
         Subject currentUser = SecurityUtils.getSubject();
+        currentUser.logout();
+
         try {
             //在调用了login方法后,SecurityManager会收到AuthenticationToken,并将其发送给已配置的Realm执行必须的认证检查
             //每个Realm都能在必要时对提交的AuthenticationTokens作出反应
@@ -54,10 +57,10 @@ public class AuthenticationController {
         //验证是否登录成功
         if (currentUser.isAuthenticated()) {
             logger.info("用户[" + username + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
-            return "redirect:/welcome";
+            return ResultBuilder.success();
         } else {
             token.clear();
-            return "redirect:/login";
+            return ResultBuilder.paramError("Username or password is wrong!");
         }
     }
 

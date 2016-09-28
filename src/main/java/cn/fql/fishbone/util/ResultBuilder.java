@@ -64,7 +64,7 @@ public class ResultBuilder {
         return t;
     }
 
-    public static <T> Result<T> queryParamError(String msg) {
+    public static <T> Result<T> paramError(String msg) {
         return error(ErrorInfoEnum.PARAM_ERROR.getCode(), msg, ErrorInfoEnum.PARAM_ERROR.getDesc());
     }
 
