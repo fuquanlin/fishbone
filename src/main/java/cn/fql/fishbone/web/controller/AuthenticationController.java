@@ -1,5 +1,6 @@
 package cn.fql.fishbone.web.controller;
 
+import cn.fql.fishbone.FishBoneConstants;
 import cn.fql.fishbone.model.domain.User;
 import cn.fql.fishbone.model.domain.common.Result;
 import cn.fql.fishbone.util.ResultBuilder;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
+import static cn.fql.fishbone.util.FishBoneSecurityUtil.getPermisionsFromSubject;
 
 /**
  * Created by fuquanlin on 2016/5/23.
@@ -27,7 +31,7 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public Result login(User user) {
+    public Result login(HttpSession session, User user) {
         String username = user.getUsername();
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
         //获取当前的Subject
@@ -57,6 +61,7 @@ public class AuthenticationController {
         //验证是否登录成功
         if (currentUser.isAuthenticated()) {
             logger.info("用户[" + username + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
+            session.setAttribute(FishBoneConstants.AUTHORIZATION_SESSION,getPermisionsFromSubject(currentUser));
             return ResultBuilder.success();
         } else {
             token.clear();
@@ -66,10 +71,9 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     @ResponseBody
-    public String logout(RedirectAttributes redirectAttributes) {
+    public Result logout(RedirectAttributes redirectAttributes) {
         //使用权限管理工具进行用户的退出，跳出登录，给出提示信息
         SecurityUtils.getSubject().logout();
-        redirectAttributes.addFlashAttribute("message", "您已安全退出");
-        return "logout";
+        return ResultBuilder.success();
     }
 }

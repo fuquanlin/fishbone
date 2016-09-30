@@ -3,6 +3,8 @@ logger.dir: /home/admin/
 #server       
 server:
     port: 8080
+    session:
+          timeout: 600
 
 app:
     name: fishbone

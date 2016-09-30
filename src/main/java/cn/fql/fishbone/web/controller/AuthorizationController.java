@@ -1,5 +1,7 @@
 package cn.fql.fishbone.web.controller;
 
+import cn.fql.fishbone.model.domain.common.Result;
+import cn.fql.fishbone.util.ResultBuilder;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import static cn.fql.fishbone.util.FishBoneSecurityUtil.getPermisionsFromSubject;
+
 /**
  * Created by fuquanlin on 2016/8/23.
  */
@@ -17,15 +21,14 @@ public class AuthorizationController {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthorizationController.class);
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @RequestMapping(value = "/userdata", method = RequestMethod.GET)
     @ResponseBody
-    public String test(){
+    public Result getCurrentUserData(){
         Subject currentUser = SecurityUtils.getSubject();
-        boolean manager = currentUser.hasRole("manager");
-        if(manager){
-            return "manager test";
+        if (currentUser.isAuthenticated()) {
+            return ResultBuilder.build(getPermisionsFromSubject(currentUser));
         }else{
-            return "test";
+            return ResultBuilder.paramError("Authentication failed");
         }
     }
 }
