@@ -1,6 +1,7 @@
 package cn.fql.fishbone.dao.mapper;
 
 import cn.fql.fishbone.model.domain.Role;
+import cn.fql.fishbone.web.dto.RoleParam;
 
 import java.util.List;
 
@@ -9,4 +10,12 @@ import java.util.List;
  */
 public interface RoleMapper {
     List<Role> getUserRolesById(Long id);
+
+    void insertRole(Role role);
+
+    void updateRole(Role role);
+
+    void deleteRole(Integer id);
+
+    List<Role> queryRole(RoleParam RoleParam);
 }

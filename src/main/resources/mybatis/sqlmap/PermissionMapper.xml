@@ -24,6 +24,8 @@
         <if test="id != null">and id = #{id}</if>
         <if test="username != null">and permissionname = #{permissionname}</if>
     </sql>
+    <insert id="insertPermission"></insert>
+    <delete id="deletePermissionByRoleId"></delete>
 
     <select id="getPermissionsByRoleId" resultType="cn.fql.fishbone.model.domain.Permission">
         SELECT

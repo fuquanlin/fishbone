@@ -33,6 +33,14 @@
         from `t_user` where username = #{username}
     </select>
 
+    <select id="queryUser" parameterType="cn.fql.fishbone.web.dto.UserParam"
+            resultType="cn.fql.fishbone.model.domain.User">
+        select
+        <include refid="selectAllColumns"/>
+        from `t_user` where
+        <include refid="queryConditions"/>
+    </select>
+
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id"
             parameterType="cn.fql.fishbone.model.domain.User">
         insert

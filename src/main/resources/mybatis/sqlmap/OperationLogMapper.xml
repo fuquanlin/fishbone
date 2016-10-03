@@ -3,10 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.fql.fishbone.dao.mapper.RoleMapper">
-    <resultMap id="roleMap" type="cn.fql.fishbone.model.domain.Role">
+<mapper namespace="cn.fql.fishbone.dao.mapper.OperationLogMapper">
+    <resultMap id="roleMap" type="cn.fql.fishbone.model.domain.OperationLog">
         <result column="id" property="id"/>
-        <result column="rolename" property="roleName"/>
     </resultMap>
 
     <sql id="selectAllColumns">
@@ -24,14 +23,12 @@
         <if test="id != null">and id = #{id}</if>
         <if test="rolename != null">and rolename = #{rolename}</if>
     </sql>
-    <insert id="insertRole"></insert>
-    <update id="updateRole"></update>
-    <delete id="deleteRole"></delete>
+    <insert id="insertOperationLog">
 
-    <select id="getUserRolesById" resultMap="roleMap">
-        select r.id,r.rolename from t_user_role ur left join t_role r on ur.role_id = r.id where ur.user_id = #{id}
+    </insert>
+    <select id="queryOperationLog" resultType="cn.fql.fishbone.model.domain.OperationLog">
+
     </select>
-    <select id="queryRole" resultType="cn.fql.fishbone.model.domain.Role"></select>
 
 
 </mapper>

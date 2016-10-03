@@ -1,19 +1,20 @@
 package cn.fql.fishbone.web.dto.pagination;
 
+import cn.fql.fishbone.model.domain.common.Base;
+
 /**
- * Created by fuquanlin on 2016/9/27.
+ * Created by fuquanlin on 2016/10/3.
  */
-public class PageInfo {
+public class PagedQueryParam extends Base {
 
     /**
-     * 页码
+     * 分布页码，默认值为1
      */
-    public int pageIndex = 1;
-
+    private int pageIndex = 1;
     /**
-     * 每页数据量
+     * 每页的条数，默认值为10
      */
-    public int pageCount = 20;
+    private int pageCount = 10;
 
     public int getPageIndex() {
         return pageIndex;

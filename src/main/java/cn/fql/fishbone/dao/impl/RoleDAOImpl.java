@@ -20,4 +20,19 @@ public class RoleDAOImpl implements RoleDAO {
     public List<Role> getUserRolesById(Long id) {
         return roleMapper.getUserRolesById(id);
     }
+
+    @Override
+    public void insertRole(Role role) {
+        roleMapper.insertRole(role);
+    }
+
+    @Override
+    public void updateRole(Role role) {
+        roleMapper.updateRole(role);
+    }
+
+    @Override
+    public void deleteRole(Integer id) {
+        roleMapper.deleteRole(id);
+    }
 }

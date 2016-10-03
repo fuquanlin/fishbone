@@ -2,6 +2,7 @@ package cn.fql.fishbone.dao.mapper;
 
 import cn.fql.fishbone.model.domain.Role;
 import cn.fql.fishbone.model.domain.User;
+import cn.fql.fishbone.web.dto.UserParam;
 
 import java.util.List;
 
@@ -17,5 +18,6 @@ public interface UserMapper {
 
     void deleteUser(Integer id);
 
+    List<User> queryUser(UserParam userParam);
 
 }
