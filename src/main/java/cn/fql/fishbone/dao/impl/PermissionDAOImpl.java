@@ -20,4 +20,14 @@ public class PermissionDAOImpl implements PermissionDAO {
     public List<Permission> getPermissionsByRoleId(Long id) {
         return permissionMapper.getPermissionsByRoleId(id);
     }
+
+    @Override
+    public void insertPermission(Permission permission) {
+        permissionMapper.insertPermission(permission);
+    }
+
+    @Override
+    public void deletePermissionByRoleId(Integer id) {
+        permissionMapper.deletePermissionByRoleId(id);
+    }
 }

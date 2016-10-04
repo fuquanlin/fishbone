@@ -6,28 +6,55 @@
 <mapper namespace="cn.fql.fishbone.dao.mapper.OperationLogMapper">
     <resultMap id="roleMap" type="cn.fql.fishbone.model.domain.OperationLog">
         <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="module_name" property="moduleName"/>
+        <result column="operation_type" property="operationType"/>
+        <result column="operation_desc" property="operationDesc"/>
+        <result column="old_value" property="oldValue"/>
+        <result column="new_value" property="newValue"/>
+        <result column="gmt_create" property="gmtCreate"/>
     </resultMap>
 
     <sql id="selectAllColumns">
-        id,rolename
+        id,username,module_name,operation_type,operation_desc,old_value,new_value,gmt_create
     </sql>
 
     <sql id="setAllColumns">
         <set>
             <if test="id != null">id = #{id},</if>
-            <if test="rolename != null">rolename = #{rolename},</if>
+            <if test="username != null">username = #{username},</if>
+            <if test="moduleName != null">module_name = #{moduleName},</if>
+            <if test="operationType != null">operation_type = #{operationType},</if>
+            <if test="operationDesc != null">operation_desc = #{operationDesc},</if>
+            <if test="oldValue != null">old_value = #{oldValue},</if>
+            <if test="newValue != null">new_value = #{newValue},</if>
+            <if test="gmtCreate != null">gmt_create = #{gmtCreate},</if>
         </set>
     </sql>
 
     <sql id="queryConditions">
-        <if test="id != null">and id = #{id}</if>
-        <if test="rolename != null">and rolename = #{rolename}</if>
+        <if test="id != null">and id = #{id},</if>
+        <if test="username != null">and username = #{username},</if>
+        <if test="moduleName != null">and module_name = #{moduleName},</if>
+        <if test="operationType != null">and operation_type = #{operationType},</if>
+        <if test="operationDesc != null">and operation_desc = #{operationDesc},</if>
+        <if test="oldValue != null">and old_value = #{oldValue},</if>
+        <if test="newValue != null">and new_value = #{newValue},</if>
+        <if test="gmtCreate != null">and gmt_create = #{gmtCreate},</if>
     </sql>
+
     <insert id="insertOperationLog">
-
+        insert into
+        `t_operation_log`
+        <include refid="setAllColumns"/>
     </insert>
-    <select id="queryOperationLog" resultType="cn.fql.fishbone.model.domain.OperationLog">
 
+    <select id="queryOperationLog" resultType="cn.fql.fishbone.model.domain.OperationLog">
+        SELECT
+        <include refid="selectAllColumns"/>
+        from `t_operation_log`
+        where
+        <include refid="queryConditions"/>
     </select>
 
 

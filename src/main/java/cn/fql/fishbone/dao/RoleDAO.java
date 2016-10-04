@@ -1,6 +1,7 @@
 package cn.fql.fishbone.dao;
 
 import cn.fql.fishbone.model.domain.Role;
+import cn.fql.fishbone.web.dto.RoleParam;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface RoleDAO {
     void updateRole(Role role);
 
     void deleteRole(Integer id);
+
+    List<Role> queryRole(RoleParam RoleParam);
 }

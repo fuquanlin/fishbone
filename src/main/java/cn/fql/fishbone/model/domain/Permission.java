@@ -8,11 +8,21 @@ import cn.fql.fishbone.model.domain.common.Base;
 public class Permission extends Base{
     private String permissionname;
 
+    private Long roleId;
+
     public String getPermissionname() {
         return permissionname;
     }
 
     public void setPermissionname(String permissionname) {
         this.permissionname = permissionname;
+    }
+
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 }

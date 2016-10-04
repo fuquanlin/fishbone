@@ -7,25 +7,35 @@
     <resultMap id="permissionMap" type="cn.fql.fishbone.model.domain.Permission">
         <result column="id" property="id"/>
         <result column="permissionname" property="permissionname"/>
+        <result column="role_id" property="roleId"/>
     </resultMap>
 
     <sql id="selectAllColumns">
-        id,permissionname
+        id,permissionname,role_id
     </sql>
 
     <sql id="setAllColumns">
         <set>
             <if test="id != null">id = #{id},</if>
-            <if test="username != null">permissionname = #{permissionname},</if>
+            <if test="permissionname != null">permissionname = #{permissionname},</if>
+            <if test="roleId != null">role_id = #{roleId},</if>
         </set>
     </sql>
 
     <sql id="queryConditions">
         <if test="id != null">and id = #{id}</if>
-        <if test="username != null">and permissionname = #{permissionname}</if>
+        <if test="permissionname != null">and permissionname = #{permissionname}</if>
     </sql>
-    <insert id="insertPermission"></insert>
-    <delete id="deletePermissionByRoleId"></delete>
+
+    <insert id="insertPermission" parameterType ="cn.fql.fishbone.model.domain.Permission">
+        insert
+        into
+        `t_permission`
+        <include refid="setAllColumns"/>
+    </insert>
+    <delete id="deletePermissionByRoleId">
+        delete from `t_permission` where role_id=#{id}
+    </delete>
 
     <select id="getPermissionsByRoleId" resultType="cn.fql.fishbone.model.domain.Permission">
         SELECT

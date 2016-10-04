@@ -3,6 +3,7 @@ package cn.fql.fishbone.dao.impl;
 import cn.fql.fishbone.dao.RoleDAO;
 import cn.fql.fishbone.dao.mapper.RoleMapper;
 import cn.fql.fishbone.model.domain.Role;
+import cn.fql.fishbone.web.dto.RoleParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -34,5 +35,10 @@ public class RoleDAOImpl implements RoleDAO {
     @Override
     public void deleteRole(Integer id) {
         roleMapper.deleteRole(id);
+    }
+
+    @Override
+    public List<Role> queryRole(RoleParam roleParam) {
+        return roleMapper.queryRole(roleParam);
     }
 }

@@ -9,4 +9,8 @@ import java.util.List;
  */
 public interface PermissionDAO {
     List<Permission> getPermissionsByRoleId(Long id);
+
+    void insertPermission(Permission permission);
+
+    void deletePermissionByRoleId(Integer id);
 }
