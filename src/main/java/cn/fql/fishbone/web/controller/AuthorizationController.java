@@ -10,19 +10,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import static cn.fql.fishbone.util.FishBoneSecurityUtil.getPermisionsFromSubject;
 
 /**
  * Created by fuquanlin on 2016/8/23.
  */
-@Controller
+@RestController
 public class AuthorizationController {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthorizationController.class);
 
     @RequestMapping(value = "/userdata", method = RequestMethod.GET)
-    @ResponseBody
     public Result getCurrentUserData(){
         Subject currentUser = SecurityUtils.getSubject();
         if (currentUser.isAuthenticated()) {

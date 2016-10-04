@@ -33,7 +33,7 @@ public class RoleDAOImpl implements RoleDAO {
     }
 
     @Override
-    public void deleteRole(Integer id) {
+    public void deleteRole(Long id) {
         roleMapper.deleteRole(id);
     }
 

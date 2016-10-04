@@ -15,6 +15,11 @@ public class PageInfo {
      */
     public int pageCount = 20;
 
+    public PageInfo(int pageIndex, int pageCount) {
+        this.pageIndex = pageIndex;
+        this.pageCount = pageCount;
+    }
+
     public int getPageIndex() {
         return pageIndex;
     }

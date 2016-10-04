@@ -15,7 +15,7 @@ public interface RoleDAO {
 
     void updateRole(Role role);
 
-    void deleteRole(Integer id);
+    void deleteRole(Long id);
 
     List<Role> queryRole(RoleParam RoleParam);
 }

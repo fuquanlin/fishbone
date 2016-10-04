@@ -2,6 +2,7 @@ package cn.fql.fishbone.dao;
 
 import cn.fql.fishbone.model.domain.Role;
 import cn.fql.fishbone.model.domain.User;
+import cn.fql.fishbone.web.dto.UserParam;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public interface UserDAO {
 
     void updateUser(User user);
 
-    void deleteUser(Integer id);
+    void deleteUser(Long id);
 
-
+    public List<User> queryUser(UserParam userParam);
 }

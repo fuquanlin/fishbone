@@ -7,4 +7,12 @@ import cn.fql.fishbone.web.dto.pagination.PagedQueryParam;
  */
 public class RoleParam extends PagedQueryParam {
     private String roleName;
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 }

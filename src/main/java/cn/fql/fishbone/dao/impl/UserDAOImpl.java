@@ -4,6 +4,7 @@ import cn.fql.fishbone.dao.UserDAO;
 import cn.fql.fishbone.dao.mapper.UserMapper;
 import cn.fql.fishbone.model.domain.Role;
 import cn.fql.fishbone.model.domain.User;
+import cn.fql.fishbone.web.dto.UserParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -34,9 +35,12 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void deleteUser(Integer id) {
+    public void deleteUser(Long id) {
         userMapper.deleteUser(id);
     }
 
-
+    @Override
+    public List<User> queryUser(UserParam userParam) {
+        return userMapper.queryUser(userParam);
+    }
 }

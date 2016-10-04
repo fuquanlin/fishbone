@@ -16,7 +16,7 @@ public interface UserMapper {
 
     void updateUser(User user);
 
-    void deleteUser(Integer id);
+    void deleteUser(Long id);
 
     List<User> queryUser(UserParam userParam);
 
