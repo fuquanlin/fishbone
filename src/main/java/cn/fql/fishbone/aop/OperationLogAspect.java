@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -25,6 +26,7 @@ import java.util.Date;
  */
 @Aspect
 @Component
+@Order(5)
 public class OperationLogAspect {
     private static final Logger LOG = LoggerFactory.getLogger(OperationLogAspect.class);
 
@@ -36,7 +38,7 @@ public class OperationLogAspect {
         // AOP切点方法，无需任何内容
     }
 
-    @Around(value = "actionMethod() ")
+    @Around(value = "actionMethod()")
     public Object aroundInvokeActionMethod(ProceedingJoinPoint joinPoint) throws Throwable {
         LOG.info("Before AOP logger");
         Object result = null;

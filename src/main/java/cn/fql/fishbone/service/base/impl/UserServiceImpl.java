@@ -1,5 +1,6 @@
 package cn.fql.fishbone.service.base.impl;
 
+import cn.fql.fishbone.dao.RoleDAO;
 import cn.fql.fishbone.dao.UserDAO;
 import cn.fql.fishbone.model.annotation.Module;
 import cn.fql.fishbone.model.annotation.Operation;
@@ -28,13 +29,14 @@ public class UserServiceImpl implements UserService {
     @SelectOne
     public User getUserById(Long id) {
         //:todo
-        return null;
+        return new User();
     }
 
     @Override
     @Operation(value = OperationLogType.CREATE, description = "create user")
     public void createUser(User user) {
         userDAO.insertUser(user);
+
     }
 
     @Override
