@@ -1,6 +1,7 @@
 package cn.fql.fishbone.controller;
 
 import cn.fql.fishbone.ApplicationMain;
+import cn.fql.fishbone.model.domain.User;
 import cn.fql.fishbone.service.base.UserService;
 import cn.fql.fishbone.web.controller.AuthenticationController;
 import cn.fql.fishbone.web.controller.UserController;
@@ -10,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -17,6 +19,10 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.ArrayList;
+
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
@@ -29,14 +35,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 public class UserControllerTest {
     private MockMvc mockMvc;
 
-//    @Mock
-//    private UserService userService;
-
-//    @InjectMocks
-//    UserController userController;
-
     @Autowired
+    @Spy
+    private UserService userService;
+
+    @InjectMocks
     UserController userController;
+
 
     @Before
     public void setup() {
@@ -45,7 +50,9 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testQueryUser() throws Exception{
+    public void testQueryUser() throws Exception {
+//        when(userService.queryUser(null)).thenReturn(new ArrayList<User>());
+//        doReturn("foo").when(userService);
         mockMvc.perform(get("/user/list")).andDo(print());
     }
 }
