@@ -28,8 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @SelectOne
     public User getUserById(Long id) {
-        //:todo
-        return new User();
+        return userDAO.getUserById(id);
     }
 
     @Override

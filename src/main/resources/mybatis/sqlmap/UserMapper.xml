@@ -37,8 +37,17 @@
             resultType="cn.fql.fishbone.model.domain.User">
         select
         <include refid="selectAllColumns"/>
-        from `t_user` where
-        <include refid="queryConditions"/>
+        from `t_user`
+        <where>
+            <include refid="queryConditions" />
+        </where>
+        limit #{pageCount} offset #{pageOffset}
+    </select>
+
+    <select id="getUserById" resultType="cn.fql.fishbone.model.domain.User" resultMap="userMap">
+        select
+        <include refid="selectAllColumns"/>
+        from `t_user` where id = #{id}
     </select>
 
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id"

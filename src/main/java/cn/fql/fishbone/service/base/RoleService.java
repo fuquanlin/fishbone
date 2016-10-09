@@ -9,6 +9,8 @@ import java.util.List;
  * Created by fuquanlin on 2016/5/23.
  */
 public interface RoleService {
+    Role getRoleById(Long id);
+
     void insertRole(Role role);
 
     void updateRole(Role role);

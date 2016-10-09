@@ -9,31 +9,30 @@ import cn.fql.fishbone.web.dto.pagination.PageInfo;
 import cn.fql.fishbone.web.dto.pagination.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
  * Created by fuquanlin on 2016/9/29.
  */
-@Controller
+@RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "", method = {RequestMethod.GET})
+    @RequestMapping(value = "/list", method = {RequestMethod.GET})
     public Result<PageResult<User>> queryUser(UserParam userParam) {
-        PageResult pagedResult = new PageResult();
         List<User> users = userService.queryUser(userParam);
-        pagedResult.setRows(users);
+        return ResultBuilder.build(userParam,users);
+    }
 
-        PageInfo pageInfo = new PageInfo(userParam.getPageIndex(),userParam.getPageCount());
-        pagedResult.setPageInfo(pageInfo);
-        return ResultBuilder.build(pagedResult);
+    @RequestMapping(value = "/{id}", method = {RequestMethod.GET})
+    public Result<User> getUserById(@PathVariable("id") Long id){
+        User user = userService.getUserById(id);
+        return ResultBuilder.build(user);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)

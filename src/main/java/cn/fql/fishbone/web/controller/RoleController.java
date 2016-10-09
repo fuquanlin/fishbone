@@ -1,13 +1,18 @@
 package cn.fql.fishbone.web.controller;
 
 import cn.fql.fishbone.model.domain.Role;
+import cn.fql.fishbone.model.domain.User;
 import cn.fql.fishbone.model.domain.common.Result;
 import cn.fql.fishbone.service.base.RoleService;
+import cn.fql.fishbone.util.PaginationUtil;
 import cn.fql.fishbone.util.ResultBuilder;
 import cn.fql.fishbone.web.dto.RoleParam;
+import cn.fql.fishbone.web.dto.pagination.PageInfo;
 import cn.fql.fishbone.web.dto.pagination.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by fuquanlin on 2016/9/29.
@@ -18,11 +23,16 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    @RequestMapping(value = "", method = {RequestMethod.GET})
+    @RequestMapping(value = "/list", method = {RequestMethod.GET})
     public Result<PageResult<Role>> queryRole(RoleParam roleParam) {
-        PageResult pagedResult = new PageResult();
+        List<Role> roles = roleService.queryRole(roleParam);
+        return ResultBuilder.build(roleParam,roles);
+    }
 
-        return ResultBuilder.build(pagedResult);
+    @RequestMapping(value = "/{id}", method = {RequestMethod.GET})
+    public Result<Role> getRoleById(@PathVariable("id") Long id){
+        Role role = roleService.getRoleById(id);
+        return ResultBuilder.build(role);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)

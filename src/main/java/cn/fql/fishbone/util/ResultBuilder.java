@@ -2,7 +2,10 @@ package cn.fql.fishbone.util;
 
 import cn.fql.fishbone.ErrorInfoEnum;
 import cn.fql.fishbone.model.domain.common.Result;
+import cn.fql.fishbone.web.dto.pagination.PagedQueryParam;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.List;
 
 /**
  * Created by fuquanlin on 2016/9/27.
@@ -17,6 +20,13 @@ public class ResultBuilder {
         Result<T> t = new Result<>();
         t.setSuccess(true);
         t.setModel(model);
+        return t;
+    }
+
+    public static  Result build(PagedQueryParam param, List rows) {
+        Result t = new Result<>();
+        t.setSuccess(true);
+        t.setModel( PaginationUtil.assable(param,rows));
         return t;
     }
 

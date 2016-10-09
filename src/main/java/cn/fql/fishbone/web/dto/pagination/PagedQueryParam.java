@@ -31,4 +31,8 @@ public class PagedQueryParam extends Base {
     public void setPageCount(int pageCount) {
         this.pageCount = pageCount;
     }
+
+    public int getPageOffset() {
+        return (pageIndex - 1) * pageCount;
+    }
 }

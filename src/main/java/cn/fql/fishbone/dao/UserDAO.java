@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface UserDAO {
 
+    User getUserById(Long id);
+
     User getUserByName(String name);
 
     void insertUser(User user);

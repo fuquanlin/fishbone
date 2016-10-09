@@ -49,8 +49,15 @@
         select
         <include refid="selectAllColumns"/>
         from `t_role`
-        WHERE
-        <include refid="queryConditions"/>
+        <where>
+            <include refid="queryConditions" />
+        </where>
+        limit #{pageCount} offset #{pageOffset}
+    </select>
+    <select id="getRoleById" resultType="cn.fql.fishbone.model.domain.Role" resultMap="roleMap">
+        select
+        <include refid="selectAllColumns"/>
+        from `t_role` where id = #{id}
     </select>
 
 

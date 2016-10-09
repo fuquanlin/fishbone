@@ -3,7 +3,7 @@ package cn.fql.fishbone.model.domain.common;
 /**
  * Created by fuquanlin on 2016/9/27.
  */
-public class Result<T> extends Base {
+public class Result<T>{
 
     private T model;
     private boolean success = true;

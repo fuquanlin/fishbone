@@ -20,6 +20,11 @@ public class UserDAOImpl implements UserDAO {
     UserMapper userMapper;
 
     @Override
+    public User getUserById(Long id) {
+        return userMapper.getUserById(id);
+    }
+
+    @Override
     public User getUserByName(String name) {
         return userMapper.getUserByName(name);
     }

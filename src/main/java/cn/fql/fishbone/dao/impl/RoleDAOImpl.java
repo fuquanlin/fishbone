@@ -23,6 +23,11 @@ public class RoleDAOImpl implements RoleDAO {
     }
 
     @Override
+    public Role getRoleById(Long id) {
+        return roleMapper.getRoleById(id);
+    }
+
+    @Override
     public void insertRole(Role role) {
         roleMapper.insertRole(role);
     }

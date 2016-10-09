@@ -11,6 +11,8 @@ import java.util.List;
 public interface RoleDAO {
     List<Role> getUserRolesById(Long id);
 
+    Role getRoleById(Long id);
+
     void insertRole(Role role);
 
     void updateRole(Role role);

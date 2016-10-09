@@ -53,8 +53,10 @@
         SELECT
         <include refid="selectAllColumns"/>
         from `t_operation_log`
-        where
-        <include refid="queryConditions"/>
+        <where>
+            <include refid="queryConditions" />
+        </where>
+        limit #{pageCount} offset #{pageOffset}
     </select>
 
 

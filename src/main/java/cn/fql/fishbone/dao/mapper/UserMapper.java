@@ -10,6 +10,9 @@ import java.util.List;
  * Created by fuquanlin on 2016/5/23.
  */
 public interface UserMapper {
+
+    User getUserById(Long id);
+
     User getUserByName(String name);
 
     void insertUser(User user);
