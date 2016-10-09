@@ -43,7 +43,6 @@ public class ShiroConfig {
         filters.put("roles", new RolesAuthorizationFilter());
         filters.put("user", new UserFilter());
         shiroFilter.setFilters(filters);
-        System.out.println(shiroFilter.getFilters().size());
         return shiroFilter;
     }
 

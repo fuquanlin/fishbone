@@ -16,18 +16,18 @@
     <sql id="setAllColumns">
         <set>
             <if test="id != null">id = #{id},</if>
-            <if test="rolename != null">rolename = #{rolename},</if>
+            <if test="roleName != null">rolename = #{roleName},</if>
         </set>
     </sql>
 
     <sql id="queryConditions">
         <if test="id != null">and id = #{id}</if>
-        <if test="rolename != null">and rolename = #{rolename}</if>
+        <if test="roleName != null">and rolename = #{roleName}</if>
     </sql>
 
-    <insert id="insertRole">
+    <insert id="insertRole" useGeneratedKeys="true" keyProperty="id" parameterType="cn.fql.fishbone.model.domain.Role">
         insert into `t_role`
-        <include refid="selectAllColumns"/>
+        <include refid="setAllColumns"/>
     </insert>
 
     <update id="updateRole" parameterType="cn.fql.fishbone.model.domain.Role">
@@ -45,7 +45,7 @@
         select r.id,r.rolename from t_user_role ur left join t_role r on ur.role_id = r.id where ur.user_id = #{id}
     </select>
 
-    <select id="queryRole" resultType="cn.fql.fishbone.model.domain.Role">
+    <select id="queryRole" resultType="cn.fql.fishbone.model.domain.Role" resultMap="roleMap">
         select
         <include refid="selectAllColumns"/>
         from `t_role`

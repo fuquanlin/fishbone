@@ -29,9 +29,9 @@ public class UserController {
         return ResultBuilder.build(userParam,users);
     }
 
-    @RequestMapping(value = "/{id}", method = {RequestMethod.GET})
-    public Result<User> getUserById(@PathVariable("id") Long id){
-        User user = userService.getUserById(id);
+    @RequestMapping(value = "/{userId}", method = {RequestMethod.GET})
+    public Result<User> getUserById(@PathVariable("userId") Long userId){
+        User user = userService.getUserById(userId);
         return ResultBuilder.build(user);
     }
 

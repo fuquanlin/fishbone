@@ -29,8 +29,8 @@ public class RoleController {
         return ResultBuilder.build(roleParam,roles);
     }
 
-    @RequestMapping(value = "/{id}", method = {RequestMethod.GET})
-    public Result<Role> getRoleById(@PathVariable("id") Long id){
+    @RequestMapping(value = "/{roleId}", method = {RequestMethod.GET})
+    public Result<Role> getRoleById(@PathVariable("roleId") Long id){
         Role role = roleService.getRoleById(id);
         return ResultBuilder.build(role);
     }

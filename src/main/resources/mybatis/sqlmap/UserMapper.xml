@@ -34,7 +34,7 @@
     </select>
 
     <select id="queryUser" parameterType="cn.fql.fishbone.web.dto.UserParam"
-            resultType="cn.fql.fishbone.model.domain.User">
+            resultType="cn.fql.fishbone.model.domain.User" resultMap="userMap">
         select
         <include refid="selectAllColumns"/>
         from `t_user`
