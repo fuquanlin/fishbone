@@ -8,15 +8,15 @@ import java.util.List;
  * Created by fuquanlin on 2016/5/23.
  */
 public class Role extends Base{
-    private String roleName;
+    private String rolename;
     private List<Permission> permissionList;
 
-    public String getRoleName() {
-        return roleName;
+    public String getRolename() {
+        return rolename;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
     }
 
     public List<Permission> getPermissionList() {

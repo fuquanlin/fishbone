@@ -13,11 +13,9 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Created by fuquanlin on 2016/5/23.
@@ -43,7 +41,7 @@ public class DBShiroRealm extends AuthorizingRealm {
             List<Role> userRolesByIds = roleDAO.getUserRolesById(user.getId());
             Set roleSet = new HashSet<>();
             for (Role userRolesById : userRolesByIds) {
-                roleSet.add(userRolesById.getRoleName());
+                roleSet.add(userRolesById.getRolename());
                 List<Permission> permissionsByRoleId = permissionDAO.getPermissionsByRoleId(userRolesById.getId());
                 for (Permission permission : permissionsByRoleId) {
                     info.addStringPermission(permission.getPermissionname());
