@@ -9,16 +9,10 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import static cn.fql.fishbone.util.FishBoneSecurityUtil.getPermisionsFromSubject;
 
@@ -31,7 +25,7 @@ public class AuthenticationController {
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Result login(HttpSession session, User user) {
+    public Result login( User user) {
         String username = user.getUsername();
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
         //获取当前的Subject
@@ -61,7 +55,7 @@ public class AuthenticationController {
         //验证是否登录成功
         if (currentUser.isAuthenticated()) {
             logger.info("用户[" + username + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
-            session.setAttribute(FishBoneConstants.AUTHORIZATION_SESSION,getPermisionsFromSubject(currentUser));
+            currentUser.getSession().setAttribute(FishBoneConstants.AUTHORIZATION_SESSION, getPermisionsFromSubject(currentUser));
             return ResultBuilder.success();
         } else {
             token.clear();
