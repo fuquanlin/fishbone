@@ -6,25 +6,31 @@
 <mapper namespace="cn.fql.fishbone.dao.mapper.PermissionMapper">
     <resultMap id="permissionMap" type="cn.fql.fishbone.model.domain.Permission">
         <result column="id" property="id"/>
+        <result column="permissioncode" property="permissioncode"/>
         <result column="permissionname" property="permissionname"/>
+        <result column="category" property="category"/>
         <result column="role_id" property="roleId"/>
     </resultMap>
 
     <sql id="selectAllColumns">
-        id,permissionname,role_id
+        id,permissioncode,permissionname,category,role_id
     </sql>
 
     <sql id="setAllColumns">
         <set>
             <if test="id != null">id = #{id},</if>
+            <if test="permissioncode != null">permissioncode = #{permissioncode},</if>
             <if test="permissionname != null">permissionname = #{permissionname},</if>
+            <if test="category != null">category = #{category},</if>
             <if test="roleId != null">role_id = #{roleId},</if>
         </set>
     </sql>
 
     <sql id="queryConditions">
         <if test="id != null">and id = #{id}</if>
+        <if test="permissioncode != null">and permissioncode = #{permissioncode}</if>
         <if test="permissionname != null">and permissionname = #{permissionname}</if>
+        <if test="category != null">and category = #{category}</if>
     </sql>
 
     <insert id="insertPermission" parameterType ="cn.fql.fishbone.model.domain.Permission">
@@ -37,11 +43,17 @@
         delete from `t_permission` where role_id=#{id}
     </delete>
 
-    <select id="getPermissionsByRoleId" resultType="cn.fql.fishbone.model.domain.Permission">
+    <select id="getPermissionsByRoleId" resultType="cn.fql.fishbone.model.domain.Permission" resultMap="permissionMap">
         SELECT
         <include refid="selectAllColumns"/>
         from t_permission
         where role_id = #{id}
+    </select>
+
+    <select id="getAllPermissions" resultType="cn.fql.fishbone.model.domain.Permission" resultMap="permissionMap">
+        SELECT
+        <include refid="selectAllColumns"/>
+        from t_permission
     </select>
 
 </mapper>

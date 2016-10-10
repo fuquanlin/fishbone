@@ -16,6 +16,12 @@ public class PermissionDAOImpl implements PermissionDAO {
 
     @Autowired
     private PermissionMapper permissionMapper;
+
+    @Override
+    public List<Permission> getAllPermissions() {
+        return permissionMapper.getAllPermissions();
+    }
+
     @Override
     public List<Permission> getPermissionsByRoleId(Long id) {
         return permissionMapper.getPermissionsByRoleId(id);

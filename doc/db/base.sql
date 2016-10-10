@@ -2,14 +2,16 @@ DROP TABLE IF EXISTS `t_permission`;
 
 CREATE TABLE `t_permission` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `permissioncode` varchar(32) DEFAULT NULL,
   `permissionname` varchar(32) DEFAULT NULL,
+  `category` varchar(32) DEFAULT NULL,
   `role_id` int(11) DEFAULT NULL,
   PRIMARY KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `t_permission` */
 
-insert  into `t_permission`(`id`,`permissionname`,`role_id`) values (1,'add',2),(2,'del',1),(3,'update',2),(4,'query',3),(5,'user:query',1),(6,'user:edit',2);
+insert  into `t_permission`(`id`,`permissioncode`,`role_id`) values (1,'add',2),(2,'del',1),(3,'update',2),(4,'query',3),(5,'user:query',1),(6,'user:edit',2);
 
 /*Table structure for table `t_role` */
 

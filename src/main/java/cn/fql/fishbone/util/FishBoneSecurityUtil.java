@@ -1,5 +1,7 @@
 package cn.fql.fishbone.util;
 
+import cn.fql.fishbone.FishboneStore;
+import cn.fql.fishbone.model.domain.Permission;
 import org.apache.shiro.subject.Subject;
 
 import java.util.ArrayList;
@@ -9,16 +11,21 @@ import java.util.List;
  * Created by fuquanlin on 2016/9/29.
  */
 public class FishBoneSecurityUtil {
-    public static final String[] ALL_PERMISSIONS = {"welcome","user","role","log"};
 
-    public static String[] getPermisionsFromSubject(Subject currentUser){
-        boolean[] currentUserPermitted = currentUser.isPermitted(ALL_PERMISSIONS);
-        List<String> permissions = new ArrayList<>();
-        for (int i =0;i<currentUserPermitted.length;i++) {
-            if (currentUserPermitted[i]){
-                permissions.add(ALL_PERMISSIONS[i]);
+    public static List<Permission> getPermisionsFromSubject(Subject currentUser) {
+        List<Permission> myPermission = new ArrayList<>();
+        for(Permission permission: FishboneStore.ALL_PERMSSIONS){
+            if(currentUser.isPermitted(permission.getPermissioncode())){
+                myPermission.add(permission);
             }
         }
-        return permissions.toArray(new String[permissions.size()]);
+//        boolean[] currentUserPermitted = currentUser.isPermitted(ALL_PERMISSION_CODES);
+//        List<String> permissions = new ArrayList<>();
+//        for (int i = 0; i < currentUserPermitted.length; i++) {
+//            if (currentUserPermitted[i]) {
+//                permissions.add(ALL_PERMISSION_CODES[i]);
+//            }
+//        }
+        return myPermission;
     }
 }

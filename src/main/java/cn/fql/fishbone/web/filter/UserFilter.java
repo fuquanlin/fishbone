@@ -2,7 +2,6 @@ package cn.fql.fishbone.web.filter;
 
 import cn.fql.fishbone.ErrorInfoEnum;
 import cn.fql.fishbone.util.JsonUtil;
-import cn.fql.fishbone.util.ResultBuilder;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
@@ -11,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
-
-import static cn.fql.fishbone.util.FishBoneSecurityUtil.getPermisionsFromSubject;
 
 /**
  * Created by fuquanlin on 2016/9/27.

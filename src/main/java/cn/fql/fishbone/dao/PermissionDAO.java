@@ -8,6 +8,9 @@ import java.util.List;
  * Created by fuquanlin on 2016/5/23.
  */
 public interface PermissionDAO {
+
+    List<Permission> getAllPermissions();
+
     List<Permission> getPermissionsByRoleId(Long id);
 
     void insertPermission(Permission permission);

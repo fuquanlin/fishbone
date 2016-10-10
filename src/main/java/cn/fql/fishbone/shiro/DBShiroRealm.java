@@ -44,7 +44,7 @@ public class DBShiroRealm extends AuthorizingRealm {
                 roleSet.add(userRolesById.getRolename());
                 List<Permission> permissionsByRoleId = permissionDAO.getPermissionsByRoleId(userRolesById.getId());
                 for (Permission permission : permissionsByRoleId) {
-                    info.addStringPermission(permission.getPermissionname());
+                    info.addStringPermission(permission.getPermissioncode());
                 }
             }
             info.setRoles(roleSet);
