@@ -8,12 +8,12 @@ import java.util.List;
 /**
  * Created by fuquanlin on 2016/10/10.
  */
-public class FishBoneStore2 {
+public class FishBoneStore {
     public static List<Permission> ALL_PERMSSIONS = null;
 
     private PermissionService permissionService;
 
-    public FishBoneStore2(PermissionService permissionService) {
+    public FishBoneStore(PermissionService permissionService) {
         this.permissionService = permissionService;
     }
 
