@@ -1,8 +1,7 @@
 package cn.fql.fishbone.config;
 
-import cn.fql.fishbone.FishboneStore;
+import cn.fql.fishbone.FishBoneStore;
 import cn.fql.fishbone.service.base.PermissionService;
-import cn.fql.fishbone.util.FishBoneSecurityUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,8 +18,8 @@ public class InitConfig {
     private PermissionService permissionService;
 
     @Bean(initMethod = "init")
-    FishboneStore fishboneStore(){
-        FishboneStore fishboneStore = new FishboneStore(permissionService);
-        return fishboneStore;
+    FishBoneStore fishboneStore(){
+        FishBoneStore fishBoneStore = new FishBoneStore(permissionService);
+        return fishBoneStore;
     }
 }

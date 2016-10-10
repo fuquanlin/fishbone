@@ -1,6 +1,6 @@
 package cn.fql.fishbone.util;
 
-import cn.fql.fishbone.FishboneStore;
+import cn.fql.fishbone.FishBoneStore;
 import cn.fql.fishbone.model.domain.Permission;
 import org.apache.shiro.subject.Subject;
 
@@ -14,7 +14,7 @@ public class FishBoneSecurityUtil {
 
     public static List<Permission> getPermisionsFromSubject(Subject currentUser) {
         List<Permission> myPermission = new ArrayList<>();
-        for(Permission permission: FishboneStore.ALL_PERMSSIONS){
+        for(Permission permission: FishBoneStore.ALL_PERMSSIONS){
             if(currentUser.isPermitted(permission.getPermissioncode())){
                 myPermission.add(permission);
             }
