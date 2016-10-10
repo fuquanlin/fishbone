@@ -1,5 +1,6 @@
 package cn.fql.fishbone.web.controller;
 
+import cn.fql.fishbone.FishBoneConstants;
 import cn.fql.fishbone.model.domain.common.Result;
 import cn.fql.fishbone.util.ResultBuilder;
 import org.apache.shiro.SecurityUtils;
@@ -26,7 +27,7 @@ public class AuthorizationController {
     public Result getCurrentUserData(){
         Subject currentUser = SecurityUtils.getSubject();
         if (currentUser.isAuthenticated()) {
-            return ResultBuilder.build(getPermisionsFromSubject(currentUser));
+            return ResultBuilder.build(SecurityUtils.getSubject().getSession().getAttribute(FishBoneConstants.AUTHORIZATION_SESSION));
         }else{
             return ResultBuilder.paramError("Authentication failed");
         }

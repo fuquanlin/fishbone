@@ -17,6 +17,5 @@
 
     angular.module('user', [])
         .config(config)
-        .controller('UserCtrl', [
-            '$log', '$scope', userCtrl])
+        .controller('UserCtrl', userCtrl)
 })();

@@ -7,18 +7,24 @@
     function config() {
     }
 
-    function mainCtrl($log, $scope,$state) {
+    function mainCtrl($log, $scope,$state,$rootScope,CommonService) {
         $log.debug("welcome main ctrl");
         $('#side-menu').metisMenu();
 
         $scope.chooseMenu = function (moduleName) {
             $state.go(moduleName);
-        }
+        };
+        
+        $scope.doLogout = function () {
+            $log.debug("Logout");
+            CommonService.doLogout(function () {
+                $rootScope.displayMain = false;
+            });
+        };
 
     }
 
-    angular.module('main', [])
+    angular.module('main', ['common.service'])
         .config(config)
-        .controller('MainCtrl', [
-            '$log', '$scope','$state', mainCtrl])
+        .controller('MainCtrl', mainCtrl)
 })();

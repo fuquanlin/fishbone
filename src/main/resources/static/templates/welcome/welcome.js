@@ -17,6 +17,5 @@
 
     angular.module('welcome', [])
         .config(config)
-        .controller('WelcomeCtrl', [
-            '$log', '$scope', welcomeCtrl])
+        .controller('WelcomeCtrl',  welcomeCtrl)
 })();

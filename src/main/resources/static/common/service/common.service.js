@@ -14,6 +14,13 @@ angular.module('common.service', ['api.service'])
             }, successFunc);
         };
 
+        _Service.doLogout = function (successFunc) {
+            ApiService.request({
+                method: 'GET',
+                url: Settings.API + "/logout"
+            }, successFunc);
+        };
+
 
         return _Service;
 

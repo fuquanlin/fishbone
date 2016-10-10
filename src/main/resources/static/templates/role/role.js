@@ -17,6 +17,5 @@
 
     angular.module('role', [])
         .config(config)
-        .controller('RoleCtrl', [
-            '$log', '$scope', roleCtrl])
+        .controller('RoleCtrl', roleCtrl)
 })();
