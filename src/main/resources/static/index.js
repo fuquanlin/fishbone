@@ -21,7 +21,7 @@
             })
     }
 
-    function RootCtrl($log, $rootScope, $scope, $state,CommonService) {
+    function RootCtrl($log, $rootScope, $scope, $state, CommonService) {
         $scope.user = {};
         $rootScope.title = "Fishbone UI";
 
@@ -31,7 +31,7 @@
 
         $scope.login = function () {
             $log.debug('Main loaded!');
-            CommonService.doLogin($scope.user,function () {
+            CommonService.doLogin($scope.user, function () {
                 $rootScope.displayMain = true;
             });
         };
@@ -62,7 +62,9 @@
             'user',
             'user.service',
             'role',
-            'role.service'
+            'role.service',
+            'log',
+            'log.service'
         ])
         .config(config)
         .controller('RootCtrl', RootCtrl)
