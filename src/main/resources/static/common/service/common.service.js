@@ -21,6 +21,12 @@ angular.module('common.service', ['api.service'])
             }, successFunc);
         };
 
+        _Service.getUserData = function (successFunc) {
+            ApiService.request({
+                method: 'GET',
+                url: Settings.API + "/userdata"
+            }, successFunc);
+        };
 
         return _Service;
 

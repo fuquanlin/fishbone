@@ -34,21 +34,16 @@
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
-                <li>
-                    <a href="" ng-click="chooseMenu('root.welcome')"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-files-o fa-fw"></i>System Configuration<span
-                            class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="" ng-click="chooseMenu('root.user')">User Management</a>
-                        </li>
-                        <li>
-                            <a href="" ng-click="chooseMenu('root.role')">Role Management</a>
+                <li ng-repeat="rt in resourceTree">
+                    <a href="" ng-click="chooseMenu('root.'+rt.permissioncode)" ng-show="rt.final"><i class="fa fa-fw"></i>
+                        {{rt.permissionname}}</a>
+                    <a href="#"  ng-show="!rt.final"><i class="fa fa-fw"></i>
+                        {{rt.permissionname}}<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level" ng-show="!rt.final">
+                        <li ng-repeat="rt2 in rt.child">
+                            <a href="" ng-click="chooseMenu('root.'+rt2.permissioncode)"><i class="fa fa-circle"></i>{{rt2.permissionname}}</a>
                         </li>
                     </ul>
-                    <!-- /.nav-second-level -->
                 </li>
             </ul>
         </div>
