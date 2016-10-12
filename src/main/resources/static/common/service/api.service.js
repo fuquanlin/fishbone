@@ -1,5 +1,5 @@
 angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($provide) {
-    $provide.factory('ApiService', ['$http','$rootScope', 'Upload',function ($http, $rootScope,$upload) {
+    $provide.factory('ApiService', ['$http', '$rootScope', 'Upload', function ($http, $rootScope, $upload) {
         return {
             request: function (config, successFunc, errFunc) {
                 config = angular.extend({
@@ -18,10 +18,6 @@ angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($p
                     var success = result["success"], errorCode = result['errorCode'], errorMsg = result["errorMsg"];
                     /* 处理异常 */
                     if (!success) {
-                        /* weblogin返回的错误描述字段为error */
-                        if(errorMsg == null){
-                            errorMsg = result["error"];
-                        }
 
                         var msg = {
                             errorCode: errorCode,
@@ -30,12 +26,15 @@ angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($p
 
                         $rootScope.errorMsg = errorMsg;
 
-                        $rootScope.showToast("error", msg);
+                        if (msg.errorCode != 3) {//not authentication error
+                            $rootScope.showToast("error", msg);
+                        }
+
                         console.log("throwableMsg :" + result["throwableMsg"]);
                         return;
                     }
 
-                    if (successFunc){
+                    if (successFunc) {
                         successFunc(result);
                     } else {
                         return result;
@@ -50,7 +49,7 @@ angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($p
                     }
                 });
             },
-            requestUpload: function (config,progressFunc,successFunc) {
+            requestUpload: function (config, progressFunc, successFunc) {
                 config = angular.extend({
                     url: Settings.API,
                     cache: false,
@@ -70,7 +69,7 @@ angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($p
                         }
 
                         /* weblogin返回的错误描述字段为error */
-                        if(errorMsg == null){
+                        if (errorMsg == null) {
                             errorMsg = result["error"];
                         }
 
@@ -84,17 +83,17 @@ angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($p
                         return;
                     }
 
-                    if (successFunc){
+                    if (successFunc) {
                         successFunc(result);
                     } else {
                         return result;
                     }
                 }).error(function (result) {
                     $rootScope.showToast("error", "网络或服务器异常,请稍后再试.");
-                    console.log("upload failed->"+result);
+                    console.log("upload failed->" + result);
                 });
             },
-            open:function (url) {
+            open: function (url) {
                 window.open(url);
             }
 

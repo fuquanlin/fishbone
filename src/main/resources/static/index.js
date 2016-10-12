@@ -21,7 +21,7 @@
             })
     }
 
-    function RootCtrl($log, $rootScope, $scope, $state, CommonService) {
+    function RootCtrl($log, $rootScope, $scope, $timeout, CommonService) {
         $scope.user = {};
         $rootScope.title = "Fishbone UI";
 
@@ -32,9 +32,16 @@
         $scope.login = function () {
             $log.debug('Main loaded!');
             CommonService.doLogin($scope.user, function () {
-                $rootScope.displayMain = true;
+                $scope.getUserData();
             });
         };
+
+        $scope.quickLogin = function (evt) {
+            if (evt.keyCode == 13) {
+                debugger;
+                $scope.login();
+            }
+        }
 
         $rootScope.showLoading = function () {
             $rootScope.isLoading = true;
@@ -45,8 +52,50 @@
         };
 
         $rootScope.showToast = function (type, msg, handler, data, ifMoreShowtoast) {
-            alert("todo");
-        }
+            alert(msg);
+        };
+
+
+        $scope.getUserData = function () {
+            CommonService.getUserData(function (response) {
+                var userDataList = response.model;
+                $rootScope.resourceTree = [];
+                var lastPermission = null;
+                var parentCategory = null;
+                var childPermission = null;
+                for (var i = 0; i < userDataList.length; i++) {
+                    if (lastPermission != null && lastPermission.category == userDataList[i].category) {
+                        if (childPermission == null) {
+                            childPermission = [userDataList[i]];
+                        } else {
+                            childPermission.push(userDataList[i]);
+                        }
+                    } else {
+                        var category = angular.copy(userDataList[i]);
+                        $scope.resourceTree.push(category);
+                        childPermission = [userDataList[i]];
+                        lastPermission = userDataList[i];
+                        parentCategory = category;
+                    }
+                    if (i == userDataList.length - 1 || lastPermission.category != userDataList[i].category) {
+                        parentCategory.child = childPermission;
+                        if (childPermission.length == 1) {
+                            parentCategory.final = true;
+                        } else {
+                            parentCategory.final = false;
+                        }
+                    }
+                }
+                
+
+                $timeout(function () {
+                    $rootScope.displayMain = true;
+                    $('#side-menu').metisMenu();
+                }, 1000);
+            });
+        };
+
+        $scope.getUserData();
     }
 
     function run($log) {
@@ -57,6 +106,7 @@
     angular.module('app', [
             'ui.router',
             'main',
+            'common',
             'common.service',
             'welcome',
             'user',

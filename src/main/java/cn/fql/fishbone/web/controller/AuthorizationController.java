@@ -25,7 +25,7 @@ public class AuthorizationController {
         if (currentUser.isAuthenticated()) {
             return ResultBuilder.build(SecurityUtils.getSubject().getSession().getAttribute(FishBoneConstants.AUTHORIZATION_SESSION));
         }else{
-            return ResultBuilder.paramError("Authentication failed");
+            return ResultBuilder.authorizationError("Authentication failed");
         }
     }
 }
