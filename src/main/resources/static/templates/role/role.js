@@ -10,12 +10,15 @@
             })
     }
 
-    function roleCtrl($log, $scope) {
+    function roleCtrl($log, $scope,RoleService) {
         $log.debug("welcome role ctrl");
+        RoleService.queryRole(null, function (response) {
+            $scope.roleList = response.model.rows;
+        });
 
     }
 
-    angular.module('role', [])
+    angular.module('role', ['role.service'])
         .config(config)
         .controller('RoleCtrl', roleCtrl)
 })();

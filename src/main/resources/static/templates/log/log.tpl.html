@@ -43,7 +43,7 @@
                         <td>{{row.operationDesc}}</td>
                         <td>{{row.gmtCreate | formatDate}}</td>
                         <td>
-                            <button  class="btn btn-default">View</button>
+                            <button  class="btn btn-default" ng-click="showDetail(row)">View</button>
                         </td>
                     </tr>
 
@@ -53,3 +53,59 @@
         </div>
     </div>
 </div>
+
+
+<!-- Template -->
+<script type="text/ng-template" id="opsLog_detail.tpl.html">
+    <div class="modal-header">
+        <h4 class="modal-title">Operation Log</h4>
+    </div>
+    <div class="modal-body" ng-style="style">
+        <div>
+            <div>
+                <label class="label-text label-text-large">Username:</label>
+                <span>{{opsLog.staffAccount}}</span>
+            </div>
+            <div class="row-space">
+                <label class="label-text label-text-large">Module Name:</label>
+                <span>{{opsLog.moduleName}}</span>
+            </div>
+            <div class="row-space">
+                <label class="label-text label-text-large">Operation Type:</label>
+                <span>{{opsLog.operationType}}</span>
+            </div>
+            <div class="row-space">
+                <label class="label-text label-text-large">Operation Description</label>
+                <span>{{opsLog.operationDescription}}</span>
+            </div>
+            <div class="row-space">
+                <label class="label-text label-text-large">Create Time</label>
+                <span>{{opsLog.gmtCreate | formatDate}}</span>
+            </div>
+            <div class="row-space">
+                <label class="label-text label-text-large">Compare：</label>
+                <div>
+                    <table class="table">
+                        <tr>
+                            <th>Attribute</th>
+                            <th>Old Value</th>
+                            <th>new Value</th>
+                        </tr>
+                        <tr ng-repeat="(name, value) in mixValue" ng-if="oldValue[name] != newValue[name]">
+                            <td>{{name}}</td>
+                            <td style="word-break: break-all;">{{oldValue[name]}}</td>
+                            <td style="word-break: break-all;">{{newValue[name]}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div>
+            <button type="button" class="btn btn-default" ng-click="close()">
+               close
+            </button>
+        </div>
+    </div>
+</script>

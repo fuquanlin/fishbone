@@ -3,10 +3,10 @@ angular.module('user.service', ['api.service'])
 
         var _Service = {};
 
-        _Service.getEmployees = function (param, successFunc) {
+        _Service.queryUser = function (param, successFunc) {
             ApiService.request({
                 method: 'GET',
-                url: Settings.API + "/employees",
+                url: Settings.API + "/user/list",
                 params: param
             }, successFunc);
         };

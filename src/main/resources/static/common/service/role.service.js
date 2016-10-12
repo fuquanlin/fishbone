@@ -3,14 +3,13 @@ angular.module('role.service', ['api.service'])
 
         var _Service = {};
 
-        _Service.getEmployees = function (param, successFunc) {
+        _Service.queryRole = function (param, successFunc) {
             ApiService.request({
                 method: 'GET',
-                url: Settings.API + "/employees",
+                url: Settings.API + "/role/list",
                 params: param
             }, successFunc);
         };
-
 
         return _Service;
 

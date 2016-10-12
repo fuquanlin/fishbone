@@ -10,12 +10,16 @@
             })
     }
 
-    function userCtrl($log, $scope) {
+    function userCtrl($log, $scope,UserService) {
         $log.debug("welcome user ctrl");
+        UserService.queryUser(null, function (response) {
+            $scope.userList = response.model.rows;
+        });
 
+     
     }
 
-    angular.module('user', [])
+    angular.module('user', ['user.service'])
         .config(config)
         .controller('UserCtrl', userCtrl)
 })();

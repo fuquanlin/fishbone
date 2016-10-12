@@ -38,10 +38,9 @@
 
         $scope.quickLogin = function (evt) {
             if (evt.keyCode == 13) {
-                debugger;
                 $scope.login();
             }
-        }
+        };
 
         $rootScope.showLoading = function () {
             $rootScope.isLoading = true;
@@ -119,7 +118,7 @@
         .config(config)
         .controller('RootCtrl', RootCtrl)
         .run(run)
-        .value('version', '1.1.0');
+        .value('version', '1.0.0');
 
 
 })();
