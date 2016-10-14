@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-controller="RootCtrl">
+<head>
+    <meta charset="UTF-8">
+    <title ng-bind="title"></title>
+
+
+    <link href="assets/css/all.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+
+<div id="login" class="container" ng-if="!displayMain">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please Sign In</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="User Name"  ng-model="user.username" autofocus ng-keypress="quickLogin($event)">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" type="password"  ng-model="user.password" ng-keypress="quickLogin($event)">
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                </label>
+                            </div>
+                            <div style="color:red">
+                                {{errorMsg}}
+                            </div>
+                            <!-- Change this to a button or input when using this as a form -->
+                            <div  class="btn btn-lg btn-success btn-block" ng-click="login()">Login</div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ui-view="main" class="main" ng-show="displayMain">
+</div>
+
+
+
+
+<script type="text/javascript" src="lib/lib.min.js"></script>
+<script type="text/javascript" src="scripts/templates.js"></script>
+<script type="text/javascript" src="scripts/all.min.js"></script>
+
+
+</body>
+</html>

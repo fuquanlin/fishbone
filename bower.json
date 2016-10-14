@@ -1,7 +1,9 @@
 {
   "name": "fishbone-ui",
   "private": "true",
-  "devDependencies": {},
+  "devDependencies": {
+
+  },
   "resolutions": {
     "angular": "1.5.8",
     "angular-animate": "latest",
