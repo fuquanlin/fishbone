@@ -9,6 +9,7 @@ var clean = require('gulp-clean');
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
 var templateCache = require('gulp-angular-templatecache');
+var ngAnnotate = require('gulp-ng-annotate');
 
 
 var buildConfig = {
@@ -51,7 +52,8 @@ var buildConfig = {
         "src/main/resources/static/lib/font-awesome/css/font-awesome.min.css"
     ],
     img: ['src/main/resources/static/assets/imgs/*'],
-
+    font: ['src/main/resources/static/lib/font-awesome/fonts/*',
+        'src/main/resources/static/lib/bootstrap/dist/fonts/*'],
     clear: [
         'dist/*'
     ]
@@ -83,7 +85,7 @@ gulp.task('styles', function () {
 
 // Libs
 gulp.task('libs', function () {
-    return gulp.src(buildConfig.js_all)
+    return gulp.src(buildConfig.js_lib)
         .pipe(concat('lib.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('dist/lib'));
@@ -92,6 +94,7 @@ gulp.task('libs', function () {
 // Scripts
 gulp.task('scripts', function () {
     return gulp.src(buildConfig.js_all)
+        .pipe(ngAnnotate())
         .pipe(concat('all.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('dist/scripts'));
@@ -109,16 +112,31 @@ gulp.task('templates', function () {
 });
 
 
-// Images
-gulp.task('images', function () {
+// Assets
+gulp.task('assets', function () {
     return gulp.src(buildConfig.img)
         .pipe(cache(imagemin({optimizationLevel: 3, progressive: true, interlaced: true})))
         .pipe(gulp.dest('dist/assets/imgs'));
 });
 
+// Fonts
+gulp.task('fonts', function () {
+    return gulp.src(buildConfig.font)
+        .pipe(gulp.dest('dist/assets/fonts'));
+});
+
+
+gulp.task("copyIndex", function () {
+    return gulp.src("template.html")
+        .pipe(rename("index.html"))
+        .pipe(gulp.dest("dist"));
+
+})
+
+
 // Default task
 gulp.task('default', ['clean'], function () {
-    gulp.start('styles', 'libs', 'scripts', 'images');
+    gulp.start('styles', 'libs', 'scripts', 'templates', 'assets', 'fonts', 'copyIndex');
 });
 
 

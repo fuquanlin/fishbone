@@ -100,21 +100,24 @@
     function run($log) {
         $log.info("running");
     }
+    var moduleList =  [
+        'ui.router',
+        'main',
+        'common',
+        'common.service',
+        'welcome',
+        'user',
+        'user.service',
+        'role',
+        'role.service',
+        'log',
+        'log.service'
+    ];
+    if(window.inBuild){
+        moduleList.push('templates');
+    }
 
-
-    angular.module('app', [
-            'ui.router',
-            'main',
-            'common',
-            'common.service',
-            'welcome',
-            'user',
-            'user.service',
-            'role',
-            'role.service',
-            'log',
-            'log.service'
-        ])
+    angular.module('app',moduleList)
         .config(config)
         .controller('RootCtrl', RootCtrl)
         .run(run)
