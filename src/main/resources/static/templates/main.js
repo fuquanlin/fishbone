@@ -21,10 +21,7 @@
                 $rootScope.displayMain = false;
             });
         };
-
-
-
-
+        
 
     }
 

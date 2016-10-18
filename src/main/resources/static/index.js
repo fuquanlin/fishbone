@@ -21,11 +21,21 @@
             })
     }
 
-    function RootCtrl($log, $rootScope, $scope, $timeout, CommonService) {
+    function RootCtrl($log, $rootScope, $scope, $timeout, cfpLoadingBar, CommonService) {
         $scope.user = {};
         $rootScope.title = "Fishbone UI";
 
         $rootScope.displayMain = false;
+
+        $rootScope.$watch("isLoading", function (newValue, oldValue) {
+            if (newValue !== undefined) {
+                if (newValue) {
+                    cfpLoadingBar.start();
+                } else {
+                    cfpLoadingBar.stop();
+                }
+            }
+        });
 
         $log.debug('RootCtrl loaded!');
 
@@ -85,7 +95,7 @@
                         }
                     }
                 }
-                
+
 
                 $timeout(function () {
                     $rootScope.displayMain = true;
@@ -95,12 +105,16 @@
         };
 
         $scope.getUserData();
+
+
     }
 
     function run($log) {
         $log.info("running");
     }
-    var moduleList =  [
+
+    var moduleList = [
+        'chieffancypants.loadingBar',
         'ui.router',
         'main',
         'common',
@@ -113,11 +127,11 @@
         'log',
         'log.service'
     ];
-    if(window.inBuild){
+    if (window.inBuild) {
         moduleList.push('templates');
     }
 
-    angular.module('app',moduleList)
+    angular.module('app', moduleList)
         .config(config)
         .controller('RootCtrl', RootCtrl)
         .run(run)

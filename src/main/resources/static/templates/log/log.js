@@ -19,7 +19,6 @@
                 $scope.logList = response.model.rows;
                 $scope.paramQuery.pageIndex = response.model.pageInfo.pageIndex;
                 $scope.paramQuery.pageCount = response.model.pageInfo.pageCount;
-                debugger;
             });
         };
 

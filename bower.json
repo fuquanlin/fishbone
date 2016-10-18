@@ -12,6 +12,7 @@
     "angular-bootstrap": "1.0",
     "angular-animate":"latest",
     "angular-ui-router":"latest",
+    "angular-loading-bar": "latest",
     "ng-file-upload": "~12.0.1",
     "jquery": "~2.2.2",
     "sb-admin": "latest",

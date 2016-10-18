@@ -43,14 +43,16 @@ var buildConfig = {
         "src/main/resources/static/lib/jquery/dist/jquery.js",
         "src/main/resources/static/lib/bootstrap/dist/js/bootstrap.min.js",
         "src/main/resources/static/lib/metisMenu/dist/metisMenu.min.js",
-        "src/main/resources/static/lib/sb-admin/app/js/sb-admin-2.js"
+        "src/main/resources/static/lib/sb-admin/app/js/sb-admin-2.js",
+        "src/main/resources/static/lib/angular-loading-bar/src/loading-bar.js"
     ],
     css_all: [
         "src/main/resources/static/lib/bootstrap/dist/css/bootstrap.min.css",
         "src/main/resources/static/lib/metisMenu/dist/metisMenu.min.css",
         "src/main/resources/static/lib/sb-admin/app/styles/sb-admin-2.css",
         "src/main/resources/static/lib/font-awesome/css/font-awesome.min.css",
-        "src/main/resources/static/lib/datatables/media/css/dataTables.bootstrap.css"
+        "src/main/resources/static/lib/datatables/media/css/dataTables.bootstrap.css",
+        "src/main/resources/static/lib/angular-loading-bar/src/loading-bar.css"
     ],
     img: ['src/main/resources/static/assets/imgs/*'],
     font: ['src/main/resources/static/lib/font-awesome/fonts/*',
