@@ -15,5 +15,6 @@ hs_err_pid*
 .idea/
 gradle/
 build/
+dist/
 node_modules/
 src/main/resources/static/lib/

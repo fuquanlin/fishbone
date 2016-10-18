@@ -43,12 +43,24 @@
                         <td>{{row.operationDesc}}</td>
                         <td>{{row.gmtCreate | formatDate}}</td>
                         <td>
-                            <button  class="btn btn-default" ng-click="showDetail(row)">View</button>
+                            <button class="btn btn-default" ng-click="showDetail(row)">View</button>
                         </td>
                     </tr>
 
                     </tbody>
                 </table>
+                <div class="dataTables_paginate paging_bootstrap">
+                    <uib-pagination
+                            total-items="1000"
+                            ng-model="paramQuery.pageIndex"
+                            items-per-page="paramQuery.pageCount"
+                            max-size = "5"
+                            class="pagination-sm"
+                            force-ellipses="true"
+                            boundary-links="false"
+                            ng-change="pageChanged()">
+                    </uib-pagination>
+                </div>
             </div>
         </div>
     </div>
@@ -104,7 +116,7 @@
     <div class="modal-footer">
         <div>
             <button type="button" class="btn btn-default" ng-click="close()">
-               close
+                close
             </button>
         </div>
     </div>

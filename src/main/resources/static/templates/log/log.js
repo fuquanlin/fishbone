@@ -12,9 +12,23 @@
 
     function logCtrl($log, $scope,$uibModal,LogService) {
         $log.debug("welcome log ctrl");
-        LogService.queryLog(null, function (response) {
-            $scope.logList = response.model.rows;
-        });
+        $scope.paramQuery ={'pageIndex':'1','pageCount':'5'};
+
+        var search = function () {
+            LogService.queryLog($scope.paramQuery, function (response) {
+                $scope.logList = response.model.rows;
+                $scope.paramQuery.pageIndex = response.model.pageInfo.pageIndex;
+                $scope.paramQuery.pageCount = response.model.pageInfo.pageCount;
+                debugger;
+            });
+        };
+
+        search();
+
+
+        $scope.pageChanged = function () {
+            search();
+        };
 
         $scope.showDetail = function (opsLog) {
             $uibModal.open({

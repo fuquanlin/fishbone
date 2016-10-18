@@ -49,7 +49,8 @@ var buildConfig = {
         "src/main/resources/static/lib/bootstrap/dist/css/bootstrap.min.css",
         "src/main/resources/static/lib/metisMenu/dist/metisMenu.min.css",
         "src/main/resources/static/lib/sb-admin/app/styles/sb-admin-2.css",
-        "src/main/resources/static/lib/font-awesome/css/font-awesome.min.css"
+        "src/main/resources/static/lib/font-awesome/css/font-awesome.min.css",
+        "src/main/resources/static/lib/datatables/media/css/dataTables.bootstrap.css"
     ],
     img: ['src/main/resources/static/assets/imgs/*'],
     font: ['src/main/resources/static/lib/font-awesome/fonts/*',

@@ -6,15 +6,15 @@
   },
   "resolutions": {
     "angular": "1.5.8",
-    "angular-animate": "latest",
-    "angular-bootstrap": "0.14.3"
+    "angular-bootstrap": "1.0"
   },
   "dependencies": {
-    "angular-bootstrap": "0.14.3",
+    "angular-bootstrap": "1.0",
     "angular-animate":"latest",
     "angular-ui-router":"latest",
     "ng-file-upload": "~12.0.1",
     "jquery": "~2.2.2",
-    "sb-admin": "latest"
+    "sb-admin": "latest",
+    "datatables":"latest"
   }
 }
