@@ -8,13 +8,17 @@ angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($p
                     withCredentials: true
                 }, config);
 
+
                 // get 请求暂时不显示loading
                 if (config.method && config.method.toUpperCase() != "GET") {
                     $rootScope.showLoading();
                 }
 
                 $http(config).success(function (result) {
-                    $rootScope.hideLoading();
+                    // get 请求暂时不显示loading
+                    if (config.method && config.method.toUpperCase() != "GET") {
+                        $rootScope.hideLoading();
+                    }
                     var success = result["success"], errorCode = result['errorCode'], errorMsg = result["errorMsg"];
                     /* 处理异常 */
                     if (!success) {

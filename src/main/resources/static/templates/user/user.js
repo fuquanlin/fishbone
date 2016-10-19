@@ -10,14 +10,14 @@
             })
     }
 
-    function userCtrl($log, $scope,UserService) {
+    function userCtrl($log, $scope,$rootScope,UserService) {
         $log.debug("welcome user ctrl");
 
         $scope.paramQuery ={'pageIndex':'1','pageCount':'5'};
 
         var search = function () {
             UserService.queryUser($scope.paramQuery, function (response) {
-                $scope.logList = response.model.rows;
+                $scope.userList = response.model.rows;
                 $scope.paramQuery.pageIndex = response.model.pageInfo.pageIndex;
                 $scope.paramQuery.pageCount = response.model.pageInfo.pageCount;
             });
@@ -30,7 +30,7 @@
         };
 
         $scope.edit = function (row) {
-
+           $rootScope.showToast("Alert","test test?")
         };
 
         $scope.delete = function (row) {

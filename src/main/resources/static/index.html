@@ -36,10 +36,12 @@
                     <form role="form">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="User Name"  ng-model="user.username" autofocus ng-keypress="quickLogin($event)">
+                                <input class="form-control" placeholder="User Name" ng-model="user.username" autofocus
+                                       ng-keypress="quickLogin($event)">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" type="password"  ng-model="user.password" ng-keypress="quickLogin($event)">
+                                <input class="form-control" placeholder="Password" type="password"
+                                       ng-model="user.password" ng-keypress="quickLogin($event)">
                             </div>
                             <div class="checkbox">
                                 <label>
@@ -50,7 +52,7 @@
                                 {{errorMsg}}
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
-                            <div  class="btn btn-lg btn-success btn-block" ng-click="login()">Login</div>
+                            <div class="btn btn-lg btn-success btn-block" ng-click="login()">Login</div>
                         </fieldset>
                     </form>
                 </div>
@@ -61,8 +63,6 @@
 
 <div ui-view="main" class="main" ng-show="displayMain">
 </div>
-
-
 
 
 <script type="text/javascript" src="lib/angular/angular.js"></script>
@@ -98,3 +98,23 @@
 
 </body>
 </html>
+
+<!-- Template -->
+<script type="text/ng-template" id="common_dialog.tpl.html">
+    <div class="modal-header">
+        <h4 class="modal-title">{{title}}</h4>
+    </div>
+    <div class="modal-body" ng-style="style">
+        {{content}}
+    </div>
+    <div class="modal-footer">
+        <div>
+            <button type="button" class="btn btn-default" ng-click="close()">
+                close
+            </button>
+            <button type="button" class="btn btn-default" ng-click="ok()">
+                OK
+            </button>
+        </div>
+    </div>
+</script>

@@ -21,7 +21,7 @@
             })
     }
 
-    function RootCtrl($log, $rootScope, $scope, $timeout, cfpLoadingBar, CommonService) {
+    function RootCtrl($log, $rootScope, $scope, $timeout, $uibModal, cfpLoadingBar, CommonService) {
         $scope.user = {};
         $rootScope.title = "Fishbone UI";
 
@@ -60,8 +60,27 @@
             $rootScope.isLoading = false;
         };
 
-        $rootScope.showToast = function (type, msg, handler, data, ifMoreShowtoast) {
-            alert(msg);
+        $rootScope.showToast = function (type, msg, handler) {
+
+            $uibModal.open({
+                templateUrl: 'common_dialog.tpl.html',
+                controller: function ($scope, $uibModalInstance) {
+
+                    $scope.title = type;
+                    $scope.content = msg;
+
+                    $scope.ok = function () {
+                        if(handler){
+                            handler();
+                        }
+                    };
+
+                    $scope.close = function () {
+                        $uibModalInstance.close();
+                    };
+                }
+            });
+
         };
 
 
@@ -115,6 +134,7 @@
 
     var moduleList = [
         'chieffancypants.loadingBar',
+        'ui.bootstrap',
         'ui.router',
         'main',
         'common',
