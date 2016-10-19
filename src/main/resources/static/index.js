@@ -27,15 +27,6 @@
 
         $rootScope.displayMain = false;
 
-        $rootScope.$watch("isLoading", function (newValue, oldValue) {
-            if (newValue !== undefined) {
-                if (newValue) {
-                    cfpLoadingBar.start();
-                } else {
-                    cfpLoadingBar.stop();
-                }
-            }
-        });
 
         $log.debug('RootCtrl loaded!');
 
@@ -53,11 +44,11 @@
         };
 
         $rootScope.showLoading = function () {
-            $rootScope.isLoading = true;
+            cfpLoadingBar.start();
         };
 
         $rootScope.hideLoading = function () {
-            $rootScope.isLoading = false;
+            cfpLoadingBar.complete();
         };
 
         $rootScope.showToast = function (type, msg, handler) {
