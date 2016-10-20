@@ -12,7 +12,7 @@
 
     function logCtrl($log, $scope,$uibModal,LogService) {
         $log.debug("welcome log ctrl");
-        $scope.paramQuery ={'pageIndex':'1','pageCount':'5'};
+        $scope.paramQuery = angular.copy(Settings.PAGE);
 
         var search = function () {
             LogService.queryLog($scope.paramQuery, function (response) {

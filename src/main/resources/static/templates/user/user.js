@@ -4,16 +4,16 @@
     function config($stateProvider) {
         $stateProvider
             .state('root.user', {
-                url:"/user",
+                url: "/user",
                 templateUrl: 'templates/user/user.tpl.html',
                 controller: 'UserCtrl'
             })
     }
 
-    function userCtrl($log, $scope,$rootScope,UserService) {
+    function userCtrl($log, $scope, $rootScope, UserService) {
         $log.debug("welcome user ctrl");
 
-        $scope.paramQuery ={'pageIndex':'1','pageCount':'5'};
+        $scope.paramQuery = angular.copy(Settings.PAGE);
 
         var search = function () {
             UserService.queryUser($scope.paramQuery, function (response) {
@@ -22,7 +22,7 @@
                 $scope.paramQuery.pageCount = response.model.pageInfo.pageCount;
             });
         };
-        
+
         search();
 
         $scope.pageChanged = function () {
@@ -30,13 +30,17 @@
         };
 
         $scope.edit = function (row) {
-           $rootScope.showToast("Alert","test test?")
         };
 
         $scope.delete = function (row) {
-
+            $rootScope.showConfirm("Do you want to delete this user?",function () {
+                UserService.deleteUser(row.id,function () {
+                    $rootScope.showAlert("Delete successfully！");
+                    search();
+                });
+            })
         };
-     
+
     }
 
     angular.module('user', ['user.service'])

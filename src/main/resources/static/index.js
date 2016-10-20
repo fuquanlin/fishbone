@@ -51,19 +51,28 @@
             cfpLoadingBar.complete();
         };
 
-        $rootScope.showToast = function (type, msg, handler) {
+        $rootScope.showAlert = function (msg, handler) {
+            $rootScope.showToast("Alert",msg, handler)
+        };
+
+        $rootScope.showConfirm = function (msg, handler) {
+            $rootScope.showToast("Confirm",msg, handler)
+        };
+
+        $rootScope.showToast = function (title, msg, handler) {
 
             $uibModal.open({
                 templateUrl: 'common_dialog.tpl.html',
                 controller: function ($scope, $uibModalInstance) {
 
-                    $scope.title = type;
+                    $scope.title = title;
                     $scope.content = msg;
 
                     $scope.ok = function () {
-                        if(handler){
+                        if (handler) {
                             handler();
                         }
+                        $uibModalInstance.close();
                     };
 
                     $scope.close = function () {

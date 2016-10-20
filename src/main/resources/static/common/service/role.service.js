@@ -11,6 +11,13 @@ angular.module('role.service', ['api.service'])
             }, successFunc);
         };
 
+        _Service.deleteRole = function (userId, successFunc) {
+            ApiService.request({
+                method: 'DELETE',
+                url: Settings.API + "/role/"+userId
+            }, successFunc);
+        };
+
         return _Service;
 
     }]);

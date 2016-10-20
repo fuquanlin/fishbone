@@ -10,11 +10,32 @@
             })
     }
 
-    function roleCtrl($log, $scope,RoleService) {
+    function roleCtrl($log, $scope,$rootScope,RoleService) {
         $log.debug("welcome role ctrl");
-        RoleService.queryRole(null, function (response) {
-            $scope.roleList = response.model.rows;
-        });
+
+        $scope.paramQuery = angular.copy(Settings.PAGE);
+        var search = function () {
+            RoleService.queryRole($scope.paramQuery, function (response) {
+                $scope.roleList = response.model.rows;
+                $scope.paramQuery.pageIndex = response.model.pageInfo.pageIndex;
+                $scope.paramQuery.pageCount = response.model.pageInfo.pageCount;
+            });
+        }
+
+        search();
+
+        $scope.pageChanged = function () {
+            search();
+        };
+
+        $scope.delete = function (row) {
+            $rootScope.showConfirm("Do you want to delete this role?",function () {
+                RoleService.deleteRole(row.id,function () {
+                    $rootScope.showAlert("Delete successfully！");
+                    search();
+                });
+            })
+        };
 
     }
 

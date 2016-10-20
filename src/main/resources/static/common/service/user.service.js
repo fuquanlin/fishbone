@@ -11,6 +11,13 @@ angular.module('user.service', ['api.service'])
             }, successFunc);
         };
 
+        _Service.deleteUser = function (userId, successFunc) {
+            ApiService.request({
+                method: 'DELETE',
+                url: Settings.API + "/user/"+userId
+            }, successFunc);
+        };
+
 
         return _Service;
 
