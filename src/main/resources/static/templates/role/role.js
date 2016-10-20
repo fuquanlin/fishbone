@@ -4,13 +4,13 @@
     function config($stateProvider) {
         $stateProvider
             .state('root.role', {
-                url:"/role",
+                url: "/role",
                 templateUrl: 'templates/role/role.tpl.html',
                 controller: 'RoleCtrl'
             })
     }
 
-    function roleCtrl($log, $scope,$rootScope,RoleService) {
+    function roleCtrl($log, $scope, $rootScope, $uibModal, RoleService) {
         $log.debug("welcome role ctrl");
 
         $scope.paramQuery = angular.copy(Settings.PAGE);
@@ -28,9 +28,41 @@
             search();
         };
 
+        $scope.add = function () {
+            $uibModal.open({
+                templateUrl: 'role_management.tpl.html',
+                controller: function ($scope, $uibModalInstance) {
+
+                    $scope.ok = function () {
+                        $uibModalInstance.close();
+                    };
+
+                    $scope.close = function () {
+                        $uibModalInstance.close();
+                    };
+                }
+            });
+        };
+
+        $scope.edit = function (row) {
+            $uibModal.open({
+                templateUrl: 'role_management.tpl.html',
+                controller: function ($scope, $uibModalInstance) {
+
+                    $scope.ok = function () {
+                        $uibModalInstance.close();
+                    };
+
+                    $scope.close = function () {
+                        $uibModalInstance.close();
+                    };
+                }
+            });
+        };
+
         $scope.delete = function (row) {
-            $rootScope.showConfirm("Do you want to delete this role?",function () {
-                RoleService.deleteRole(row.id,function () {
+            $rootScope.showConfirm("Do you want to delete this role?", function () {
+                RoleService.deleteRole(row.id, function () {
                     $rootScope.showAlert("Delete successfully！");
                     search();
                 });
@@ -39,7 +71,7 @@
 
     }
 
-    angular.module('role', ['role.service'])
+    angular.module('role', ['ui.bootstrap', 'role.service'])
         .config(config)
         .controller('RoleCtrl', roleCtrl)
 })();

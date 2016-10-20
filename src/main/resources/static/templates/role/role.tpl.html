@@ -12,6 +12,9 @@
                 Role management
             </div>
             <div class="panel-body">
+                <div>
+                    <button  class="btn btn-default" ng-click="add()">Add</button>
+                </div>
                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                     <tr>
@@ -55,3 +58,23 @@
         </div>
     </div>
 </div>
+
+<!-- Template -->
+<script type="text/ng-template" id="role_management.tpl.html">
+    <div class="modal-header">
+        <h4 class="modal-title">{{title}}</h4>
+    </div>
+    <div class="modal-body" ng-style="style">
+        {{content}}
+    </div>
+    <div class="modal-footer">
+        <div>
+            <button type="button" class="btn btn-default" ng-click="close()">
+                close
+            </button>
+            <button type="button" class="btn btn-default" ng-click="ok()">
+                OK
+            </button>
+        </div>
+    </div>
+</script>

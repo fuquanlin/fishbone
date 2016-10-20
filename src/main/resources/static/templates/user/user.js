@@ -10,7 +10,7 @@
             })
     }
 
-    function userCtrl($log, $scope, $rootScope, UserService) {
+    function userCtrl($log, $scope, $rootScope, $uibModal, UserService) {
         $log.debug("welcome user ctrl");
 
         $scope.paramQuery = angular.copy(Settings.PAGE);
@@ -29,12 +29,41 @@
             search();
         };
 
+        $scope.add = function () {
+            $uibModal.open({
+                templateUrl: 'user_management.tpl.html',
+                controller: function ($scope, $uibModalInstance) {
+
+                    $scope.ok = function () {
+                        $uibModalInstance.close();
+                    };
+
+                    $scope.close = function () {
+                        $uibModalInstance.close();
+                    };
+                }
+            });
+        };
+
         $scope.edit = function (row) {
+            $uibModal.open({
+                templateUrl: 'user_management.tpl.html',
+                controller: function ($scope, $uibModalInstance) {
+
+                    $scope.ok = function () {
+                        $uibModalInstance.close();
+                    };
+
+                    $scope.close = function () {
+                        $uibModalInstance.close();
+                    };
+                }
+            });
         };
 
         $scope.delete = function (row) {
-            $rootScope.showConfirm("Do you want to delete this user?",function () {
-                UserService.deleteUser(row.id,function () {
+            $rootScope.showConfirm("Do you want to delete this user?", function () {
+                UserService.deleteUser(row.id, function () {
                     $rootScope.showAlert("Delete successfully！");
                     search();
                 });
@@ -43,7 +72,7 @@
 
     }
 
-    angular.module('user', ['user.service'])
+    angular.module('user', ['ui.bootstrap', 'user.service'])
         .config(config)
         .controller('UserCtrl', userCtrl)
 })();
