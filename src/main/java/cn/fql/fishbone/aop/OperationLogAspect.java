@@ -40,7 +40,7 @@ public class OperationLogAspect {
 
     @Around(value = "actionMethod()")
     public Object aroundInvokeActionMethod(ProceedingJoinPoint joinPoint) throws Throwable {
-        LOG.info("Before AOP logger");
+        LOG.debug("Before AOP logger");
         Object result = null;
         Object instance = joinPoint.getTarget();
         Object[] arguments = joinPoint.getArgs();
@@ -70,7 +70,7 @@ public class OperationLogAspect {
         } else {
             result = joinPoint.proceed(arguments);
         }
-        LOG.info("After AOP logger");
+        LOG.debug("After AOP logger");
         return result;
     }
 

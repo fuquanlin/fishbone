@@ -28,10 +28,9 @@ public class CrossSiteFilter implements Filter {
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with,Content-Type");
         response.setHeader("Access-Control-Allow-Credentials", "true");
 
-        logger.info("SimpleCORSFilter start");
-
         String requestUrl = request.getRequestURL().toString();
-        logger.info("invoke url -> [{}]", requestUrl);
+        String method = request.getMethod();
+        logger.info("CrossSiteFilter url -> [{}] {}", requestUrl, method);
 
         if ("OPTIONS".equals(request.getMethod())) {
             response.setStatus(HttpStatus.OK.value());
