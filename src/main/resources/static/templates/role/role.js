@@ -24,16 +24,25 @@
 
         search();
 
+        var refresh = function () {
+            $scope.paramQuery.pageIndex = 1;
+            search();
+        }
+
         $scope.pageChanged = function () {
             search();
         };
 
         $scope.add = function () {
             $uibModal.open({
+                size: 'lg',
                 templateUrl: 'role_management.tpl.html',
-                controller: function ($scope, $uibModalInstance) {
+                controller: function ($scope, $uibModalInstance,RoleService) {
 
                     $scope.ok = function () {
+                        RoleService.createRole($scope.model,function () {
+                            refresh();
+                        });
                         $uibModalInstance.close();
                     };
 
@@ -45,26 +54,34 @@
         };
 
         $scope.edit = function (row) {
-            $uibModal.open({
-                templateUrl: 'role_management.tpl.html',
-                controller: function ($scope, $uibModalInstance) {
+            RoleService.getRole(row.id,function (response) {
+                var model = response.model;
+                $uibModal.open({
+                    size: 'lg',
+                    templateUrl: 'role_management.tpl.html',
+                    controller: function ($scope, $uibModalInstance,RoleService) {
+                        $scope.model = model;
+                        $scope.ok = function () {
+                            RoleService.updateRole($scope.model,function () {
+                                refresh();
+                            });
+                            $uibModalInstance.close();
+                        };
 
-                    $scope.ok = function () {
-                        $uibModalInstance.close();
-                    };
-
-                    $scope.close = function () {
-                        $uibModalInstance.close();
-                    };
-                }
+                        $scope.close = function () {
+                            $uibModalInstance.close();
+                        };
+                    }
+                });
             });
+
         };
 
         $scope.delete = function (row) {
             $rootScope.showConfirm("Do you want to delete this role?", function () {
                 RoleService.deleteRole(row.id, function () {
                     $rootScope.showAlert("Delete successfully！");
-                    search();
+                    refresh();
                 });
             })
         };
