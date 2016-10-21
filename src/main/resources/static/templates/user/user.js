@@ -23,6 +23,11 @@
             });
         };
 
+        var refresh = function () {
+            $scope.paramQuery.pageIndex = 1;
+            search();
+        }
+
         search();
 
         $scope.pageChanged = function () {
@@ -31,10 +36,14 @@
 
         $scope.add = function () {
             $uibModal.open({
+                size: 'lg',
                 templateUrl: 'user_management.tpl.html',
-                controller: function ($scope, $uibModalInstance) {
+                controller: function ($scope, $uibModalInstance,UserService) {
 
                     $scope.ok = function () {
+                        UserService.createUser($scope.model,function () {
+                            refresh();
+                        });
                         $uibModalInstance.close();
                     };
 
@@ -46,26 +55,34 @@
         };
 
         $scope.edit = function (row) {
-            $uibModal.open({
-                templateUrl: 'user_management.tpl.html',
-                controller: function ($scope, $uibModalInstance) {
+            UserService.getUser(row.id,function (response) {
+                var model = response.model;
+                $uibModal.open({
+                    size: 'lg',
+                    templateUrl: 'user_management.tpl.html',
+                    controller: function ($scope, $uibModalInstance,UserService) {
+                        $scope.model = model;
+                        $scope.ok = function () {
+                            UserService.updateUser($scope.model,function () {
+                                refresh();
+                            });
+                            $uibModalInstance.close();
+                        };
 
-                    $scope.ok = function () {
-                        $uibModalInstance.close();
-                    };
-
-                    $scope.close = function () {
-                        $uibModalInstance.close();
-                    };
-                }
+                        $scope.close = function () {
+                            $uibModalInstance.close();
+                        };
+                    }
+                });
             });
+
         };
 
         $scope.delete = function (row) {
             $rootScope.showConfirm("Do you want to delete this user?", function () {
                 UserService.deleteUser(row.id, function () {
                     $rootScope.showAlert("Delete successfully！");
-                    search();
+                    refresh();
                 });
             })
         };

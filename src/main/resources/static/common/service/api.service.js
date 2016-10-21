@@ -31,7 +31,7 @@ angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($p
                         $rootScope.errorMsg = errorMsg;
 
                         if (msg.errorCode != 3) {//not authentication error
-                            $rootScope.showToast("error", msg);
+                            $rootScope.showAlert(msg);
                         }
 
                         console.log("throwableMsg :" + result["throwableMsg"]);
@@ -49,7 +49,7 @@ angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($p
                         errFunc(result);
                     } else {
                         $rootScope.hideLoading();
-                        $rootScope.showToast("error", "网络或服务器异常,请稍后再试.");
+                        $rootScope.showAlert("error", "Network or Server error, please try again!");
                     }
                 });
             },
@@ -72,7 +72,7 @@ angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($p
                             errorMsg: errorMsg
                         };
 
-                        $rootScope.showToast("error", msg);
+                        $rootScope.showAlert("error", msg);
                         console.log("throwableMsg :" + result["throwableMsg"]);
                         return;
                     }
@@ -83,7 +83,7 @@ angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($p
                         return result;
                     }
                 }).error(function (result) {
-                    $rootScope.showToast("error", "网络或服务器异常,请稍后再试.");
+                    $rootScope.showAlert("Network or Server error, please try again!");
                     console.log("upload failed->" + result);
                 });
             },
