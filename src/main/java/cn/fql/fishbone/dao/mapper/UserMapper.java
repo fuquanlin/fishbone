@@ -23,4 +23,10 @@ public interface UserMapper {
 
     List<User> queryUser(UserParam userParam);
 
+    void insertUserRole(Long userId, Long roleId);
+
+    void deleteUserRoleByUserId(Long userId);
+
+
+
 }

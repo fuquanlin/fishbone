@@ -84,6 +84,30 @@
                                placeholder="Please input password" maxlength="32" required>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label  class="col-sm-2  control-label">
+                        Roles
+                    </label>
+                    <div class="col-sm-10 multi-select-full" ng-class="{'has-error': noneSelect}">
+                        <div isteven-multi-select
+                             input-model="roleList"
+                             tick-property="tick"
+                             output-model="model.roles"
+                             output-properties="id"
+                             output-key="id"
+                             button-label="rolename"
+                             item-label="rolename"
+                             translation="multiSelect_language_zh"
+                             max-labels="10"
+                             min-search-length="2"
+                             search-property="rolename"
+                             helper-elements="filter reset"
+                             selection-mode="MULTIPLE"
+                             on-item-click="fItemClick()"
+                             on-reset="fReset()">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="modal-footer">

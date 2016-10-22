@@ -57,6 +57,12 @@
         `t_user`
         <include refid="setAllColumns"/>
     </insert>
+    <insert id="insertUserRole">
+        insert
+        INTO
+        `t_user_role`
+        values(#{0},#{1})
+    </insert>
 
     <update id="updateUser" parameterType="cn.fql.fishbone.model.domain.User">
         update
@@ -72,5 +78,12 @@
         `t_user`
         where
         id = #{id}
+    </delete>
+    <delete id="deleteUserRoleByUserId">
+        DELETE
+        FROM
+        `t_user_role`
+        WHERE
+        user_id = #{userId}
     </delete>
 </mapper>

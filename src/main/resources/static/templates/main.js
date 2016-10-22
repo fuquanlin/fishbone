@@ -21,6 +21,14 @@
                 $rootScope.displayMain = false;
             });
         };
+
+        $rootScope.multiSelect_language_zh = {
+            selectAll: "Select All",
+            selectNone: "Cancel All",
+            reset: "Reset",
+            search: "Search",
+            nothingSelected: "Please select"         //default-label is deprecated and replaced with this.
+        }
         
 
     }

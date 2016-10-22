@@ -20,4 +20,6 @@ public interface RoleMapper {
     void deleteRole(Long id);
 
     List<Role> queryRole(RoleParam RoleParam);
+
+    List<Role> getRolesByUserId(Long userId);
 }

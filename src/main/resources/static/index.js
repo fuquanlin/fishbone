@@ -8,7 +8,7 @@
         angular.bootstrap(document, ['app']);
     });
 
-    function config($stateProvider) {
+    function config($stateProvider,$urlRouterProvider) {
         $stateProvider
             .state('root', {
                 url: "",
@@ -18,7 +18,8 @@
                         controller: 'MainCtrl'
                     }
                 }
-            })
+            });
+        $urlRouterProvider.otherwise('/welcome');
     }
 
     function RootCtrl($log, $rootScope, $scope, $timeout, $uibModal, $state,cfpLoadingBar, CommonService) {
@@ -106,7 +107,7 @@
                         lastPermission = userDataList[i];
                         parentCategory = category;
                     }
-                    if (i == userDataList.length - 1 || lastPermission.category != userDataList[i].category) {
+                    if (i == userDataList.length - 1 || userDataList[i].category == null || lastPermission.category != userDataList[i].category) {
                         parentCategory.child = childPermission;
                         if (childPermission.length == 1) {
                             parentCategory.final = true;
@@ -115,6 +116,7 @@
                         }
                     }
                 }
+                debugger;
 
 
                 $timeout(function () {

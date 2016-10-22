@@ -11,6 +11,7 @@ import cn.fql.fishbone.service.base.UserService;
 import cn.fql.fishbone.web.dto.UserParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     @Operation(value = OperationLogType.CREATE, description = "create user")
     public void createUser(User user) {
         userDAO.insertUser(user);
@@ -39,12 +41,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     @Operation(value = OperationLogType.UPDATE, description = "update user")
     public void updateUser(User user) {
         userDAO.updateUser(user);
     }
 
     @Override
+    @Transactional
     @Operation(value = OperationLogType.DELETE, description = "delete user")
     public void deleteUser(Long id) {
         userDAO.deleteUser(id);

@@ -32,7 +32,7 @@ angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($p
 
                         if (msg.errorCode != 3) {//not authentication error
                             if (msg.errorCode != 4) {
-                                $rootScope.showAlert(msg);
+                                $rootScope.showAlert(msg,null);
                             } else {
                                 $rootScope.showAlert(msg, function () {
                                     $rootScope.displayMain = false;
@@ -55,7 +55,7 @@ angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($p
                         errFunc(result);
                     } else {
                         $rootScope.hideLoading();
-                        $rootScope.showAlert("error", "Network or Server error, please try again!");
+                        $rootScope.showAlert( "Network or Server error, please try again!");
                     }
                 });
             },

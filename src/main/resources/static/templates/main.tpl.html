@@ -38,7 +38,7 @@
                     <a href="" ng-click="chooseMenu('root.'+rt.permissioncode)" ng-show="rt.final"><i class="fa fa-fw"></i>
                         {{rt.permissionname}}</a>
                     <a href="#"  ng-show="!rt.final"><i class="fa fa-fw"></i>
-                        {{rt.permissionname}}<span class="fa arrow"></span></a>
+                        {{rt.category}}<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level" ng-show="!rt.final">
                         <li ng-repeat="rt2 in rt.child">
                             <a href="" ng-click="chooseMenu('root.'+rt2.permissioncode)"><i class="fa fa-circle"></i>{{rt2.permissionname}}</a>
