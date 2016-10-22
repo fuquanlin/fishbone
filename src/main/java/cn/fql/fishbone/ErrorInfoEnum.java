@@ -6,7 +6,8 @@ package cn.fql.fishbone;
 public enum ErrorInfoEnum {
 
     SYSTEM_ERROR(1, "系统错误"), PARAM_ERROR(2, "非法参数"),
-    AUTHORIZATION_ERROR(3, "系统未授权"),
+    AUTHENTICATION_ERROR(3, "系统未登录"),
+    AUTHORIZATION_ERROR(4, "系统未授权"),
     UNCAUGHT_ERROR(9999, "未知错误");
 
     private int code; // 错误码

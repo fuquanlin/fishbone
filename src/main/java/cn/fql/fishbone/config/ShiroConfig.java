@@ -9,6 +9,7 @@ import org.apache.shiro.web.filter.authc.AnonymousFilter;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.filter.authc.LogoutFilter;
 import org.apache.shiro.web.filter.authc.UserFilter;
+import org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter;
 import org.apache.shiro.web.filter.authz.RolesAuthorizationFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
@@ -28,21 +29,24 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilter() {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setLoginUrl("/login");
-        shiroFilter.setSuccessUrl("/index");
-        shiroFilter.setUnauthorizedUrl("/forbidden");
-        Map<String, String> filterChainDefinitionMapping = new HashMap<String, String>();
-        filterChainDefinitionMapping.put("/", "anon");
-        filterChainDefinitionMapping.put("/home", "authc,roles[guest]");
-        filterChainDefinitionMapping.put("/admin", "authc,roles[admin]");
-        shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMapping);
-        shiroFilter.setSecurityManager(securityManager());
+//        shiroFilter.setSuccessUrl("/index.html");
+        shiroFilter.setUnauthorizedUrl("/403");
+
         Map<String, Filter> filters = new HashMap<String, Filter>();
-        filters.put("anon", new AnonymousFilter());
         filters.put("authc", new FormAuthenticationFilter());
-        filters.put("logout", new LogoutFilter());
-        filters.put("roles", new RolesAuthorizationFilter());
         filters.put("user", new UserFilter());
+        filters.put("roles", new RolesAuthorizationFilter());
+        filters.put("perms", new PermissionsAuthorizationFilter());
         shiroFilter.setFilters(filters);
+
+        Map<String, String> filterChainDefinitionMapping = new HashMap<String, String>();
+        filterChainDefinitionMapping.put("/welcome/**", "authc,perms[welcome]");
+        filterChainDefinitionMapping.put("/user/**", "authc,perms[user]");
+        filterChainDefinitionMapping.put("/role/**", "authc,perms[role]");
+        filterChainDefinitionMapping.put("/log/**", "authc,perms[log}");
+        shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMapping);
+        //Security Manager
+        shiroFilter.setSecurityManager(securityManager());
         return shiroFilter;
     }
 

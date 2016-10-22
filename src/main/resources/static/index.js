@@ -21,7 +21,7 @@
             })
     }
 
-    function RootCtrl($log, $rootScope, $scope, $timeout, $uibModal, cfpLoadingBar, CommonService) {
+    function RootCtrl($log, $rootScope, $scope, $timeout, $uibModal, $state,cfpLoadingBar, CommonService) {
         $scope.user = {};
         $rootScope.title = "Fishbone UI";
 
@@ -34,6 +34,7 @@
             $log.debug('Main loaded!');
             CommonService.doLogin($scope.user, function () {
                 $scope.getUserData();
+                $state.reload();
             });
         };
 

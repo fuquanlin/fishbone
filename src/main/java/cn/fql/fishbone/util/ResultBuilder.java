@@ -78,6 +78,10 @@ public class ResultBuilder {
         return error(ErrorInfoEnum.PARAM_ERROR.getCode(), msg, ErrorInfoEnum.PARAM_ERROR.getDesc());
     }
 
+    public static <T> Result<T> authenticationError(String msg) {
+        return error(ErrorInfoEnum.AUTHENTICATION_ERROR.getCode(), msg, ErrorInfoEnum.AUTHENTICATION_ERROR.getDesc());
+    }
+
     public static <T> Result<T> authorizationError(String msg) {
         return error(ErrorInfoEnum.AUTHORIZATION_ERROR.getCode(), msg, ErrorInfoEnum.AUTHORIZATION_ERROR.getDesc());
     }

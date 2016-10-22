@@ -31,7 +31,13 @@ angular.module('api.service', ['ngFileUpload']).config(['$provide', function ($p
                         $rootScope.errorMsg = errorMsg;
 
                         if (msg.errorCode != 3) {//not authentication error
-                            $rootScope.showAlert(msg);
+                            if (msg.errorCode != 4) {
+                                $rootScope.showAlert(msg);
+                            } else {
+                                $rootScope.showAlert(msg, function () {
+                                    $rootScope.displayMain = false;
+                                });
+                            }
                         }
 
                         console.log("throwableMsg :" + result["throwableMsg"]);

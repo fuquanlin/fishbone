@@ -63,6 +63,11 @@ public class AuthenticationController {
         }
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public Result loginUrl(){
+        return ResultBuilder.authenticationError("Authentication failed!");
+    }
+
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public Result logout(RedirectAttributes redirectAttributes) {
         //使用权限管理工具进行用户的退出，跳出登录，给出提示信息

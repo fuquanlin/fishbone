@@ -25,7 +25,12 @@ public class AuthorizationController {
         if (currentUser.isAuthenticated()) {
             return ResultBuilder.build(SecurityUtils.getSubject().getSession().getAttribute(FishBoneConstants.AUTHORIZATION_SESSION));
         }else{
-            return ResultBuilder.authorizationError("Authentication failed");
+            return ResultBuilder.authenticationError("Authentication failed!");
         }
+    }
+
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    public Result unauthorized(){
+        return ResultBuilder.authorizationError("Permission deny!");
     }
 }
