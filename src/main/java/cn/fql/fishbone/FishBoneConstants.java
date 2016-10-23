@@ -5,4 +5,5 @@ package cn.fql.fishbone;
  */
 public class FishBoneConstants {
     public static final String AUTHORIZATION_SESSION = "AUTHORIZATION_SESSION";
+    public static final String PASSWORD_SALT = "123";
 }

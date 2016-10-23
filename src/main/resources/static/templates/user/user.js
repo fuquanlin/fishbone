@@ -67,6 +67,7 @@
                 size: 'lg',
                 templateUrl: 'user_management.tpl.html',
                 controller: function ($scope, $uibModalInstance, UserService, RoleService) {
+                    $scope.addDialog = true;
                     $scope.noneSelect = false;
 
                     $scope.fItemClick = function () {
@@ -112,7 +113,7 @@
                 $uibModal.open({
                     size: 'lg',
                     templateUrl: 'user_management.tpl.html',
-                    controller: function ($scope, $uibModalInstance, UserService,RoleService) {
+                    controller: function ($scope, $uibModalInstance, UserService, RoleService) {
                         $scope.model = model;
 
                         $scope.noneSelect = false;
@@ -136,7 +137,7 @@
 
                         RoleService.queryRole({"pageIndex": 1, "pageCount": 1000}, function (response) {
                             $scope.roleList = response.model.rows;
-                            $scope.roleList = initMultiSelectData($scope.roleList,  $scope.model.roles);
+                            $scope.roleList = initMultiSelectData($scope.roleList, $scope.model.roles);
                         });
 
                         $scope.ok = function () {
@@ -164,9 +165,20 @@
             })
         };
 
+        $scope.resetPassword = function (row) {
+            $rootScope.showConfirm("Do you want to reset password?", function () {
+                var password = Math.random().toString(36).substr(2, 8);//generate 8 chars password
+                var param = {'id': row.id, 'password': password};
+                UserService.updateUser(param, function () {
+                    $rootScope.showAlert("Reset password successfully！" + row.username + " 's password is " + password);
+                    refresh();
+                });
+            })
+        }
+
     }
 
-    angular.module('user', ['ui.bootstrap','isteven-multi-select', 'user.service', 'role.service'])
+    angular.module('user', ['ui.bootstrap', 'isteven-multi-select', 'user.service', 'role.service'])
         .config(config)
         .controller('UserCtrl', userCtrl)
 })();

@@ -33,6 +33,7 @@ angular.module('user.service', ['api.service'])
                 data: param
             }, successFunc);
         };
+        
 
         _Service.deleteUser = function (userId, successFunc) {
             ApiService.request({

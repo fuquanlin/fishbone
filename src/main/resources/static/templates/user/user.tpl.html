@@ -37,6 +37,7 @@
                         <td>
                             <button class="btn btn-default" ng-click="edit(row)">Edit</button>
                             <button class="btn btn-default" ng-click="delete(row)">Delete</button>
+                            <button class="btn btn-default" ng-click="resetPassword(row)">Reset Password</button>
                         </td>
                     </tr>
                 </table>
@@ -75,7 +76,7 @@
                                placeholder="Please input user name" maxlength="32" required>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-if="addDialog">
                     <label for="model_password" class="col-sm-2  control-label">
                         Password
                     </label>
@@ -85,7 +86,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label  class="col-sm-2  control-label">
+                    <label class="col-sm-2  control-label">
                         Roles
                     </label>
                     <div class="col-sm-10 multi-select-full" ng-class="{'has-error': noneSelect}">

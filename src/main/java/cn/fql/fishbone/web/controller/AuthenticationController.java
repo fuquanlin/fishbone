@@ -6,6 +6,7 @@ import cn.fql.fishbone.model.domain.common.Result;
 import cn.fql.fishbone.util.ResultBuilder;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,8 @@ public class AuthenticationController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Result login( User user) {
         String username = user.getUsername();
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
+        String sha1 = new Sha256Hash(user.getPassword(), FishBoneConstants.PASSWORD_SALT).toString();
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), sha1);
         //获取当前的Subject
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();

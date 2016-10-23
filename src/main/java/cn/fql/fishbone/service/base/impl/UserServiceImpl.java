@@ -1,5 +1,6 @@
 package cn.fql.fishbone.service.base.impl;
 
+import cn.fql.fishbone.FishBoneConstants;
 import cn.fql.fishbone.dao.RoleDAO;
 import cn.fql.fishbone.dao.UserDAO;
 import cn.fql.fishbone.model.annotation.Module;
@@ -9,6 +10,7 @@ import cn.fql.fishbone.model.domain.User;
 import cn.fql.fishbone.model.enums.OperationLogType;
 import cn.fql.fishbone.service.base.UserService;
 import cn.fql.fishbone.web.dto.UserParam;
+import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +38,8 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Operation(value = OperationLogType.CREATE, description = "create user")
     public void createUser(User user) {
+        String sha1 = new Sha256Hash(user.getPassword(), FishBoneConstants.PASSWORD_SALT).toString();
+        user.setPassword(sha1);
         userDAO.insertUser(user);
 
     }
@@ -44,6 +48,10 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Operation(value = OperationLogType.UPDATE, description = "update user")
     public void updateUser(User user) {
+        if (user.getPassword() != null) {
+            String sha1 = new Sha256Hash(user.getPassword(), FishBoneConstants.PASSWORD_SALT).toString();
+            user.setPassword(sha1);
+        }
         userDAO.updateUser(user);
     }
 
@@ -54,7 +62,7 @@ public class UserServiceImpl implements UserService {
         userDAO.deleteUser(id);
     }
 
-    public List<User> queryUser(UserParam userParam){
+    public List<User> queryUser(UserParam userParam) {
         return userDAO.queryUser(userParam);
     }
 }
