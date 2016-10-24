@@ -23,12 +23,14 @@ var buildConfig = {
         "src/main/resources/static/common/service/user.service.js",
         "src/main/resources/static/common/service/role.service.js",
         "src/main/resources/static/common/service/log.service.js",
+        "src/main/resources/static/common/service/config.service.js",
         "src/main/resources/static/index.js",
         "src/main/resources/static/templates/main.js",
         "src/main/resources/static/templates/welcome/welcome.js",
         "src/main/resources/static/templates/user/user.js",
         "src/main/resources/static/templates/role/role.js",
-        "src/main/resources/static/templates/log/log.js"
+        "src/main/resources/static/templates/log/log.js",
+        "src/main/resources/static/templates/config/config.js"
     ],
     template_all: [
         "src/main/resources/static/templates/*.html",

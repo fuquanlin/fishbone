@@ -8,7 +8,7 @@
         angular.bootstrap(document, ['app']);
     });
 
-    function config($stateProvider,$urlRouterProvider) {
+    function config($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('root', {
                 url: "",
@@ -22,7 +22,7 @@
         $urlRouterProvider.otherwise('/welcome');
     }
 
-    function RootCtrl($log, $rootScope, $scope, $timeout, $uibModal, $state,cfpLoadingBar, CommonService) {
+    function RootCtrl($log, $rootScope, $scope, $timeout, $uibModal, $state, cfpLoadingBar, CommonService) {
         $scope.user = {};
         $rootScope.title = "Fishbone UI";
 
@@ -54,11 +54,11 @@
         };
 
         $rootScope.showAlert = function (msg, handler) {
-            $rootScope.showToast("Alert",msg, handler)
+            $rootScope.showToast("Alert", msg, handler)
         };
 
         $rootScope.showConfirm = function (msg, handler) {
-            $rootScope.showToast("Confirm",msg, handler)
+            $rootScope.showToast("Confirm", msg, handler)
         };
 
         $rootScope.showToast = function (title, msg, handler) {
@@ -148,7 +148,9 @@
         'role',
         'role.service',
         'log',
-        'log.service'
+        'log.service',
+        'config',
+        'config.service'
     ];
     if (window.inBuild) {
         moduleList.push('templates');
