@@ -17,9 +17,10 @@ public class RoleDAOImpl implements RoleDAO {
     @Autowired
     private RoleMapper roleMapper;
 
+
     @Override
-    public List<Role> getUserRolesById(Long id) {
-        return roleMapper.getUserRolesById(id);
+    public List<Role> getRolesByUserId(Long userId) {
+        return roleMapper.getRolesByUserId(userId);
     }
 
     @Override

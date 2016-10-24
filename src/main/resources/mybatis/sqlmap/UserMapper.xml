@@ -8,10 +8,11 @@
         <result column="id" property="id"/>
         <result column="username" property="username"/>
         <result column="password" property="password"/>
+        <result column="email" property="email"/>
     </resultMap>
 
     <sql id="selectAllColumns">
-        id,username,password
+        id,username,password,email
     </sql>
 
     <sql id="setAllColumns">
@@ -19,27 +20,29 @@
             <if test="id != null">id = #{id},</if>
             <if test="username != null">username = #{username},</if>
             <if test="password != null">password = #{password},</if>
+            <if test="email != null">email = #{email},</if>
         </set>
     </sql>
 
     <sql id="queryConditions">
         <if test="id != null">and id = #{id}</if>
         <if test="username != null">and username = #{username}</if>
+        <if test="email != null">and email = #{email}</if>
     </sql>
 
     <select id="getUserByName" parameterType="String" resultMap="userMap">
         select
         <include refid="selectAllColumns"/>
-        from `t_user` where username = #{username}
+        from `f_user` where username = #{username}
     </select>
 
     <select id="queryUser" parameterType="cn.fql.fishbone.web.dto.UserParam"
             resultType="cn.fql.fishbone.model.domain.User" resultMap="userMap">
         select
         <include refid="selectAllColumns"/>
-        from `t_user`
+        from `f_user`
         <where>
-            <include refid="queryConditions" />
+            <include refid="queryConditions"/>
         </where>
         limit #{pageCount} offset #{pageOffset}
     </select>
@@ -47,26 +50,27 @@
     <select id="getUserById" resultType="cn.fql.fishbone.model.domain.User" resultMap="userMap">
         select
         <include refid="selectAllColumns"/>
-        from `t_user` where id = #{id}
+        from `f_user` where id = #{id}
     </select>
 
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id"
             parameterType="cn.fql.fishbone.model.domain.User">
         insert
         into
-        `t_user`
+        `f_user`
         <include refid="setAllColumns"/>
     </insert>
+
     <insert id="insertUserRole">
         insert
         INTO
-        `t_user_role`
+        `f_user_role`
         values(#{0},#{1})
     </insert>
 
     <update id="updateUser" parameterType="cn.fql.fishbone.model.domain.User">
         update
-        `t_user`
+        `f_user`
         <include refid="setAllColumns"/>
         where
         id = #{id}
@@ -75,14 +79,15 @@
     <delete id="deleteUser">
         delete
         from
-        `t_user`
+        `f_user`
         where
         id = #{id}
     </delete>
+
     <delete id="deleteUserRoleByUserId">
         DELETE
         FROM
-        `t_user_role`
+        `f_user_role`
         WHERE
         user_id = #{userId}
     </delete>

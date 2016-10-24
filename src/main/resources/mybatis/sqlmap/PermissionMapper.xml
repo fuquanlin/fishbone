@@ -9,11 +9,11 @@
         <result column="permissioncode" property="permissioncode"/>
         <result column="permissionname" property="permissionname"/>
         <result column="category" property="category"/>
-        <result column="role_id" property="roleId"/>
+        <result column="type" property="type"/>
     </resultMap>
 
     <sql id="selectAllColumns">
-        id,permissioncode,permissionname,category,role_id
+        id,permissioncode,permissionname,category,`type`
     </sql>
 
     <sql id="setAllColumns">
@@ -22,7 +22,7 @@
             <if test="permissioncode != null">permissioncode = #{permissioncode},</if>
             <if test="permissionname != null">permissionname = #{permissionname},</if>
             <if test="category != null">category = #{category},</if>
-            <if test="roleId != null">role_id = #{roleId},</if>
+            <if test="type != null">type = #{type},</if>
         </set>
     </sql>
 
@@ -31,29 +31,33 @@
         <if test="permissioncode != null">and permissioncode = #{permissioncode}</if>
         <if test="permissionname != null">and permissionname = #{permissionname}</if>
         <if test="category != null">and category = #{category}</if>
+        <if test="type != null">and type = #{type}</if>
     </sql>
 
     <insert id="insertPermission" parameterType ="cn.fql.fishbone.model.domain.Permission">
         insert
         into
-        `t_permission`
+        `f_permission`
         <include refid="setAllColumns"/>
     </insert>
+
     <delete id="deletePermissionByRoleId">
-        delete from `t_permission` where role_id=#{id}
+        delete from `f_permission` where role_id=#{id}
     </delete>
 
     <select id="getPermissionsByRoleId" resultType="cn.fql.fishbone.model.domain.Permission" resultMap="permissionMap">
         SELECT
-        <include refid="selectAllColumns"/>
-        from t_permission
-        where role_id = #{id}
+        p.id,p.permissioncode,p.permissionname,p.category,p.type
+        from `f_role_permission` rp
+        left JOIN
+        `f_permission` p on rp.permission_id = p.id
+        WHERE rp.role_id = #{roleId}
     </select>
 
     <select id="getAllPermissions" resultType="cn.fql.fishbone.model.domain.Permission" resultMap="permissionMap">
         SELECT
         <include refid="selectAllColumns"/>
-        from t_permission
+        from f_permission
     </select>
 
 </mapper>

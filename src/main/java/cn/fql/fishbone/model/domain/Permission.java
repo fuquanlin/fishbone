@@ -9,6 +9,7 @@ public class Permission extends Base{
     private String permissioncode;
     private String permissionname;
     private String category;
+    private String type;
 
     private Long roleId;
 
@@ -34,6 +35,14 @@ public class Permission extends Base{
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Long getRoleId() {

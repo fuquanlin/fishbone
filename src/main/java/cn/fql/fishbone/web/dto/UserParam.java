@@ -7,6 +7,7 @@ import cn.fql.fishbone.web.dto.pagination.PagedQueryParam;
  */
 public class UserParam extends PagedQueryParam {
     private String username;
+    private String email;
 
     public String getUsername() {
         return username;
@@ -14,5 +15,13 @@ public class UserParam extends PagedQueryParam {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

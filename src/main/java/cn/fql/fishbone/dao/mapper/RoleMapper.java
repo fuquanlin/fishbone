@@ -9,7 +9,6 @@ import java.util.List;
  * Created by fuquanlin on 2016/5/23.
  */
 public interface RoleMapper {
-    List<Role> getUserRolesById(Long id);
 
     Role getRoleById(Long id);
 
@@ -22,4 +21,8 @@ public interface RoleMapper {
     List<Role> queryRole(RoleParam RoleParam);
 
     List<Role> getRolesByUserId(Long userId);
+
+    void insertRolePermission(Long userId, Long roleId);
+
+    void deleteRolePermission(Long userId);
 }

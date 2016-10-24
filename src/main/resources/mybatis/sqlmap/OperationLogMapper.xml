@@ -45,14 +45,14 @@
 
     <insert id="insertOperationLog" useGeneratedKeys="true" keyProperty="id">
         insert into
-        `t_operation_log`
+        `f_operation_log`
         <include refid="setAllColumns"/>
     </insert>
 
     <select id="queryOperationLog" resultType="cn.fql.fishbone.model.domain.OperationLog" resultMap="logMap">
         SELECT
         <include refid="selectAllColumns"/>
-        from `t_operation_log`
+        from `f_operation_log`
         <where>
             <include refid="queryConditions" />
         </where>

@@ -7,9 +7,10 @@ import java.util.List;
 /**
  * Created by fuquanlin on 2016/5/23.
  */
-public class User extends Base{
+public class User extends Base {
     private String username;
     private String password;
+    private String email;
 
     private List<Role> roles;
 
@@ -27,6 +28,14 @@ public class User extends Base{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<Role> getRoles() {

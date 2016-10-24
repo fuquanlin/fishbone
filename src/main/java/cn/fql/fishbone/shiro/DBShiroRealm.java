@@ -38,7 +38,7 @@ public class DBShiroRealm extends AuthorizingRealm {
         User user = userDAO.getUserByName(loginName);
         if (user != null) {
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-            List<Role> userRolesByIds = roleDAO.getUserRolesById(user.getId());
+            List<Role> userRolesByIds = roleDAO.getRolesByUserId(user.getId());
             Set roleSet = new HashSet<>();
             for (Role userRolesById : userRolesByIds) {
                 roleSet.add(userRolesById.getRolename());
