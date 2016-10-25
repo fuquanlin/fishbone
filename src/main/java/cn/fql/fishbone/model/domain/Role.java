@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Role extends Base{
     private String rolename;
-    private List<Permission> permissionList;
+    private List<Permission> permissions;
 
     public String getRolename() {
         return rolename;
@@ -19,11 +19,11 @@ public class Role extends Base{
         this.rolename = rolename;
     }
 
-    public List<Permission> getPermissionList() {
-        return permissionList;
+    public List<Permission> getPermissions() {
+        return permissions;
     }
 
-    public void setPermissionList(List<Permission> permissionList) {
-        this.permissionList = permissionList;
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
     }
 }

@@ -147,6 +147,7 @@
         'user.service',
         'role',
         'role.service',
+        'permission.service',
         'log',
         'log.service',
         'config',

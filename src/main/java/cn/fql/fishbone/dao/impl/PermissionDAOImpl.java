@@ -3,6 +3,7 @@ package cn.fql.fishbone.dao.impl;
 import cn.fql.fishbone.dao.PermissionDAO;
 import cn.fql.fishbone.dao.mapper.PermissionMapper;
 import cn.fql.fishbone.model.domain.Permission;
+import cn.fql.fishbone.web.dto.PermissionParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,11 @@ public class PermissionDAOImpl implements PermissionDAO {
 
     @Autowired
     private PermissionMapper permissionMapper;
+
+    @Override
+    public List<Permission> queryPermission(PermissionParam permissionParam) {
+        return permissionMapper.queryPermission(permissionParam);
+    }
 
     @Override
     public List<Permission> getAllPermissions() {

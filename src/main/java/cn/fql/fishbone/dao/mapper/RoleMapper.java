@@ -22,7 +22,7 @@ public interface RoleMapper {
 
     List<Role> getRolesByUserId(Long userId);
 
-    void insertRolePermission(Long userId, Long roleId);
+    void insertRolePermission(Long roleId, Long permissionId);
 
     void deleteRolePermission(Long userId);
 }

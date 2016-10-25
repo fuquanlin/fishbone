@@ -60,7 +60,7 @@
                 }
             }
             return outputData;
-        }
+        };
 
         $scope.add = function () {
             $uibModal.open({

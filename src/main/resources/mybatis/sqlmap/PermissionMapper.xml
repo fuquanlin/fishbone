@@ -60,4 +60,14 @@
         from f_permission
     </select>
 
+    <select id="queryPermission" resultType="cn.fql.fishbone.model.domain.Permission" resultMap="permissionMap">
+        select
+        <include refid="selectAllColumns"/>
+        from `f_permission`
+        <where>
+            <include refid="queryConditions"/>
+        </where>
+        limit #{pageCount} offset #{pageOffset}
+    </select>
+
 </mapper>
