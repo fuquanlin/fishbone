@@ -7,11 +7,13 @@ CREATE TABLE `f_permission` (
   `permissionname` VARCHAR(32)      DEFAULT NULL,
   `category`       VARCHAR(32)      DEFAULT NULL,
   `type`           VARCHAR(32)      DEFAULT NULL,
-  PRIMARY KEY `id` (`id`)
+  PRIMARY KEY `id` (`id`),
+  UNIQUE INDEX `permissioncode` (permissioncode)
 )
   ENGINE = InnoDB
   AUTO_INCREMENT = 100
   DEFAULT CHARSET = utf8;
+
 
 /*Data for the table `f_permission` */
 
@@ -33,7 +35,8 @@ DROP TABLE IF EXISTS `f_role`;
 CREATE TABLE `f_role` (
   `id`       INT(11) NOT NULL AUTO_INCREMENT,
   `rolename` VARCHAR(32)      DEFAULT NULL,
-  PRIMARY KEY `id` (`id`)
+  PRIMARY KEY `id` (`id`),
+  UNIQUE INDEX `rolename` (rolename)
 )
   ENGINE = InnoDB
   AUTO_INCREMENT = 100
@@ -52,7 +55,8 @@ CREATE TABLE `f_user` (
   `username` VARCHAR(32)      DEFAULT NULL,
   `password` VARCHAR(256)     DEFAULT NULL,
   `email`    VARCHAR(256)     DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `username` (username)
 )
   ENGINE = InnoDB
   AUTO_INCREMENT = 100
