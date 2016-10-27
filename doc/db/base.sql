@@ -124,3 +124,6 @@ CREATE TABLE `f_operation_log` (
 
 /*Data for the table `f_operation_log` */
 
+
+COMMIT;
+
