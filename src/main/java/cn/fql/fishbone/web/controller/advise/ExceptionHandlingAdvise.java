@@ -6,12 +6,14 @@ import cn.fql.fishbone.util.ResultBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by fuquanlin on 2016/9/27.
  */
+@ControllerAdvice
 public class ExceptionHandlingAdvise {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionHandlingAdvise.class);
 
