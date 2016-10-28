@@ -125,5 +125,43 @@ CREATE TABLE `f_operation_log` (
 /*Data for the table `f_operation_log` */
 
 
+/*Table structure for table `f_config` */
+
+DROP TABLE IF EXISTS `f_config`;
+
+CREATE TABLE `f_config` (
+  `id`         INT(11) NOT NULL AUTO_INCREMENT,
+  `namespace`  VARCHAR(100)     DEFAULT NULL,
+  `code`       VARCHAR(100)     DEFAULT NULL,
+  `value`      VARCHAR(256)     DEFAULT NULL,
+  `gmt_create` DATETIME         DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+/*Data for the table `f_config` */
+
+
+/*Table structure for table `f_config` */
+
+DROP TABLE IF EXISTS `f_config_metadata`;
+
+CREATE TABLE `f_config_metadata` (
+  `id`      INT(11) NOT NULL AUTO_INCREMENT,
+  `code`    VARCHAR(100)     DEFAULT NULL,
+  `name`    VARCHAR(100)     DEFAULT NULL,
+  `pattern` VARCHAR(100)     DEFAULT NULL,
+  `tip`     VARCHAR(256)     DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `code` (code)
+
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+/*Data for the table `f_config_metadata` */
+
+
 COMMIT;
 
