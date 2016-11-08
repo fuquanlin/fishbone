@@ -22,7 +22,7 @@ import java.util.Properties;
 /**
  * Created by fuquanlin on 2016/10/27.
  */
-@Configuration
+//@Configuration
 public class QuartzConfig {
 
     private static final Logger LOG = LoggerFactory.getLogger(QuartzConfig.class);
