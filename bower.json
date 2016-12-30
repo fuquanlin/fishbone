@@ -5,11 +5,11 @@
 
   },
   "resolutions": {
-    "angular": "1.5.8",
-    "angular-bootstrap": "1.0"
+    "angular": "1.2.13",
+    "angular-bootstrap": "0.13"
   },
   "dependencies": {
-    "angular-bootstrap": "1.0",
+    "angular-bootstrap": "0.13",
     "angular-animate":"latest",
     "angular-ui-router":"latest",
     "angular-loading-bar": "latest",

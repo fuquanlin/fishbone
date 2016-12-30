@@ -10,6 +10,7 @@ import cn.fql.fishbone.model.domain.User;
 import cn.fql.fishbone.model.enums.OperationLogType;
 import cn.fql.fishbone.service.base.UserService;
 import cn.fql.fishbone.web.dto.UserParam;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,7 +63,12 @@ public class UserServiceImpl implements UserService {
         userDAO.deleteUser(id);
     }
 
+    @HystrixCommand(fallbackMethod = "queryFallback")
     public List<User> queryUser(UserParam userParam) {
         return userDAO.queryUser(userParam);
+    }
+
+    public String queryFallback(){
+        return "query users failed";
     }
 }

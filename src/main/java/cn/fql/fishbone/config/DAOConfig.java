@@ -66,7 +66,7 @@ public class DAOConfig {
         druidDataSource.setMaxPoolPreparedStatementPerConnectionSize(20);
         druidDataSource.setFilters("config");
         Properties properties = new Properties();
-        properties.put("config.decrypt", "true");
+        //properties.put("config.decrypt", "true");
         druidDataSource.setConnectProperties(properties);
 
         StatFilter statFilter = new StatFilter();
