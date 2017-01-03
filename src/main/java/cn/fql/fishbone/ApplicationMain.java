@@ -3,6 +3,7 @@ package cn.fql.fishbone;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.util.StopWatch;
 
@@ -14,6 +15,7 @@ import java.util.Date;
  */
 @SpringBootApplication
 @EnableCircuitBreaker
+@EnableHystrixDashboard
 @ComponentScan("cn.fql.fishbone")
 public class ApplicationMain {
 
