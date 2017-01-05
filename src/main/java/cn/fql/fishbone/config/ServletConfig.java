@@ -7,11 +7,14 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * metrics URL is /metrics/hystrix.stream
+ * I have added actuator so this hystrix servlet had been deprecated
  * Created by fuquanlin on 2017/1/3.
  */
+
 @Configuration
 public class ServletConfig {
 
+    @Deprecated
     @Bean(name = "hystrixRegistrationBean")
     public ServletRegistrationBean servletRegistrationBean() {
         ServletRegistrationBean registration = new ServletRegistrationBean(
