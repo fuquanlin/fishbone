@@ -1,26 +1,26 @@
-package cn.fql.zuul;
+package cn.fql.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.util.StopWatch;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by fuquanlin on 2017/1/5.
+ * Created by fuquanlin on 2017/1/6.
  */
 @SpringBootApplication
-@EnableZuulProxy
-public class ZuulMain {
+@EnableConfigServer
+public class ConfigMain {
     public static void main(String[] args) {
         StopWatch sw = new StopWatch();
         sw.start();
-        SpringApplication.run(ZuulMain.class, args);
+        SpringApplication.run(ConfigMain.class, args);
         System.out.println(new SimpleDateFormat("[yyyy-MM-dd HH:mm:ss]").format(new Date())
-                + "Eureka server started!");
+                + "Config server started!");
         sw.stop();
-        System.out.println("Eureka Launch Time: " + sw.toString());
+        System.out.println("Config Launch Time: " + sw.toString());
     }
 }

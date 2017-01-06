@@ -1,4 +1,5 @@
 rootProject.name = 'fishbone'
 include 'eureka'
 include 'zuul'
+include 'config'
 

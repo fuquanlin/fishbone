@@ -1,0 +1,18 @@
+logger.dir: /home/admin/
+
+#server
+server:
+    port: 6080
+    session:
+          timeout: 600
+
+app:
+    name: config
+
+spring:
+    cloud:
+        config:
+            server:
+              git:
+                uri:
+

@@ -8,3 +8,7 @@ server:
 
 app:
     name: zuul
+
+zuul:
+    routes:
+          api: /api/**
