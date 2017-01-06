@@ -1,0 +1,10 @@
+logger.dir: /home/admin/
+
+#server
+server:
+    port: 7080
+    session:
+          timeout: 600
+
+app:
+    name: zuul
