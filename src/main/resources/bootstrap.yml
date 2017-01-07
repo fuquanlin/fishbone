@@ -1,6 +1,6 @@
 spring:
   application:
-    name: fishbone
+    name: test
   cloud:
     config:
-      uri: http://localhost:6088
+      uri: http://localhost:6080

@@ -11,6 +11,7 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ import static cn.fql.fishbone.util.FishBoneSecurityUtil.getPermisionsFromSubject
  * Created by fuquanlin on 2016/5/23.
  */
 @RestController
+@RefreshScope
 public class AuthenticationController {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
@@ -78,9 +80,10 @@ public class AuthenticationController {
         return ResultBuilder.success();
     }
 
-    @Value("${test1}")
+    @Value("${test2}")
     private String config;
 
+    @RequestMapping(value = "/print", method = RequestMethod.GET)
     public  Result printConfig(){
         return ResultBuilder.build(config);
     }
