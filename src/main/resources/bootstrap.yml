@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: fishbone
+  cloud:
+    config:
+      uri: http://localhost:6088

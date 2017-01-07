@@ -9,10 +9,12 @@ server:
 app:
     name: config
 
+
+
 spring:
     cloud:
         config:
             server:
               git:
-                uri:
-
+                uri: https://github.com/fuquanlin/fishbone.git
+                searchPaths: config

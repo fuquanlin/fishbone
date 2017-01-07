@@ -28,6 +28,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-actuator:1.4.3.RELEASE'
     compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
     compile 'org.springframework.cloud:spring-cloud-starter-hystrix-dashboard'
+    compile 'org.springframework.cloud:spring-cloud-starter-config'
     compile 'org.apache.shiro:shiro-all:1.2.4'
     compile 'org.mybatis:mybatis:3.4.0'
     compile 'org.mybatis:mybatis-spring:1.3.0'

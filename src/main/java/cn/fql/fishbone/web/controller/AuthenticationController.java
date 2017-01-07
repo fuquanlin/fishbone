@@ -10,6 +10,7 @@ import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -75,5 +76,12 @@ public class AuthenticationController {
         //使用权限管理工具进行用户的退出，跳出登录，给出提示信息
         SecurityUtils.getSubject().logout();
         return ResultBuilder.success();
+    }
+
+    @Value("${test1}")
+    private String config;
+
+    public  Result printConfig(){
+        return ResultBuilder.build(config);
     }
 }
