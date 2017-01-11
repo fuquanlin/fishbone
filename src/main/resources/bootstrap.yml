@@ -1,6 +1,11 @@
 spring:
   application:
-    name: test
+    name: fishbone
   cloud:
     config:
       uri: http://localhost:6080
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:9080/eureka/
