@@ -1,0 +1,17 @@
+logger.dir: /home/admin/
+
+#server
+server:
+    port: 5080
+    session:
+          timeout: 600
+
+app:
+    name: admin
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:6080/eureka/
