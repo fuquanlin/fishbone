@@ -3,4 +3,5 @@ include 'eureka'
 include 'zuul'
 include 'config'
 include 'admin'
+include 'ribbon'
 

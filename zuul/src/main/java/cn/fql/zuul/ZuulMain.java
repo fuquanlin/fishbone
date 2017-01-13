@@ -19,8 +19,8 @@ public class ZuulMain {
         sw.start();
         SpringApplication.run(ZuulMain.class, args);
         System.out.println(new SimpleDateFormat("[yyyy-MM-dd HH:mm:ss]").format(new Date())
-                + "Eureka server started!");
+                + "Zuul server started!");
         sw.stop();
-        System.out.println("Eureka Launch Time: " + sw.toString());
+        System.out.println("Zuul Launch Time: " + sw.toString());
     }
 }
