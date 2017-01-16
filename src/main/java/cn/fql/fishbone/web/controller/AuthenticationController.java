@@ -29,7 +29,7 @@ public class AuthenticationController {
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Result login( User user) {
+    public Result login(User user) {
         String username = user.getUsername();
         String sha1 = new Sha256Hash(user.getPassword(), FishBoneConstants.PASSWORD_SALT).toString();
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), sha1);
@@ -69,7 +69,7 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public Result loginUrl(){
+    public Result loginUrl() {
         return ResultBuilder.authenticationError("Authentication failed!");
     }
 
@@ -84,7 +84,8 @@ public class AuthenticationController {
     private String config;
 
     @RequestMapping(value = "/print", method = RequestMethod.GET)
-    public  Result printConfig(){
-        return ResultBuilder.build(config);
+    public String printConfig() {
+        return "testsdfdsfsd";
+        //return config;
     }
 }
