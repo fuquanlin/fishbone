@@ -1,5 +1,7 @@
 Fishbone Introduction
 
+sleuth server 3080
+
 ribbon server 4080
 
 admin server  5080

@@ -1,0 +1,10 @@
+logger.dir: /home/admin/
+
+#server
+server:
+    port: 3080
+    session:
+          timeout: 600
+
+app:
+    name: sleuth

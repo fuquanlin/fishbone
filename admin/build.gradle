@@ -15,7 +15,7 @@ repositories {
 dependencies {
     compile 'de.codecentric:spring-boot-admin-server:1.4.5'
     compile 'de.codecentric:spring-boot-admin-server-ui:1.4.5'
-    compile 'org.springframework.cloud:spring-cloud-starter-eureka'
+    compile 'org.springframework.cloud:spring-cloud-starter-eureka:1.2.3.RELEASE'
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

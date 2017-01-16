@@ -1,0 +1,19 @@
+group 'cn.fql'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'io.zipkin.java:zipkin-ui:1.19.1'
+    compile 'io.zipkin.java:zipkin-server:1.19.1'
+    compile 'org.springframework.cloud:spring-cloud-starter-sleuth:1.1.1.RELEASE'
+    compile 'org.springframework.cloud:spring-cloud-sleuth-zipkin:1.1.1.RELEASE'
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
