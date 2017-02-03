@@ -47,6 +47,9 @@ dependencies {
     compile 'io.springfox:springfox-swagger-ui:2.2.2'
     compile 'com.netflix.hystrix:hystrix-core:1.5.2'
     compile 'de.codecentric:spring-boot-admin-starter-client:1.4.5'
+    compile 'io.zipkin.java:zipkin:1.19.1'
+    compile 'org.springframework.cloud:spring-cloud-starter-sleuth:1.1.1.RELEASE'
+    compile 'org.springframework.cloud:spring-cloud-sleuth-zipkin:1.1.1.RELEASE'
 
     testCompile 'junit:junit:4.11'
     testCompile 'org.springframework:spring-test:4.1.5.RELEASE'

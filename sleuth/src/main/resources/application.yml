@@ -8,3 +8,7 @@ server:
 
 app:
     name: sleuth
+
+spring:
+    application:
+        name: sleuth

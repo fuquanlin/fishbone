@@ -10,8 +10,10 @@ repositories {
 }
 
 dependencies {
+    compile 'org.springframework.boot:spring-boot-starter:1.4.3.RELEASE'
     compile 'io.zipkin.java:zipkin-ui:1.19.1'
     compile 'io.zipkin.java:zipkin-server:1.19.1'
+    compile 'org.springframework.cloud:spring-cloud-sleuth-core:1.1.1..RELEASE'
     compile 'org.springframework.cloud:spring-cloud-starter-sleuth:1.1.1.RELEASE'
     compile 'org.springframework.cloud:spring-cloud-sleuth-zipkin:1.1.1.RELEASE'
 

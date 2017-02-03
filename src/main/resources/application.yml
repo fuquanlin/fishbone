@@ -17,5 +17,7 @@ spring:
     boot:
         admin:
             url: http://localhost:5080
-
+    zipkin:
+        enabled: true
+        baseUrl: http://localhost:3080
 
