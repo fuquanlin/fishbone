@@ -3,7 +3,7 @@ var http = require('http');
 
 
 var app = express();
-app.use(express.static("../src/main/resources/static"));
+app.use(express.static("../tail/src/main/resources/static"));
 
 app.use(function (req, res, next) {
   console.log('Time:', Date.now());

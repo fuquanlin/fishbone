@@ -1,15 +1,22 @@
-Fishbone Introduction
+#Fishbone Introduction
 
-sleuth server 3080
+* head      8000  Oauth Login
 
-ribbon server 4080
+* user      8001  User Center
 
-admin server  5080
+* account   8002  
 
-config server 6080
+* tail      8080  Management System
 
-zuul server 7080
+* sleuth server 3080 service chain monitor
 
-eureka server 9080
+* ribbon server 4080
 
-fishbone      8080
+* admin server  5080 System monitor
+
+* config server 6080 Config center
+
+* zuul server 7080  api gateway
+
+* eureka server 9080 discovery 
+

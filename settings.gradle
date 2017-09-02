@@ -1,4 +1,11 @@
 rootProject.name = 'fishbone'
+include 'head'
+include 'user'
+include 'account'
+include 'pay'
+include 'settle'
+include 'tail'
+
 include 'eureka'
 include 'zuul'
 include 'config'
