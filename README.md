@@ -1,10 +1,14 @@
 #Fishbone Introduction
 
-* head      8000  Oauth Login
+* head      8000  First App server
 
-* user      8001  User Center
+* user      8001  User and Auth Center
 
-* account   8002  
+* account   8002  account center
+
+* pay       8003  Weixin pay
+
+* settle    8004  Settle System base on spring batch
 
 * tail      8080  Management System
 
