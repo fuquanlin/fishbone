@@ -12,3 +12,18 @@ app:
 spring:
     application:
         name: sleuth
+
+sleuth:
+    sampler:
+      percentage: 1.0
+    cloud:
+      stream:
+        kafka:
+          binder:
+            brokers: localhost:9092
+            zk-nodes: localhost:2181
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9080/eureka/

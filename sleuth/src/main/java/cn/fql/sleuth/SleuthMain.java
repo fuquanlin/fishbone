@@ -2,8 +2,9 @@ package cn.fql.sleuth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.sleuth.zipkin.stream.EnableZipkinStreamServer;
 import org.springframework.util.StopWatch;
-import zipkin.server.EnableZipkinServer;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,7 +13,8 @@ import java.util.Date;
  * Created by fuquanlin on 2017/1/16.
  */
 @SpringBootApplication
-@EnableZipkinServer
+@EnableDiscoveryClient
+@EnableZipkinStreamServer
 public class SleuthMain {
 
     public static void main(String[] args) {
