@@ -14,10 +14,12 @@ app:
           password: root
 
 spring:
+
     boot:
         admin:
             url: http://localhost:5080
-#    zipkin:
+    zipkin:
+        enabled: false
 #        base-url: http://127.0.0.1:3080
     sleuth:
         sampler:
