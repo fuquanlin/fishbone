@@ -12,10 +12,10 @@ app:
 spring:
     application:
         name: sleuth
-
-sleuth:
-    sampler:
-      percentage: 1.0
+#    zipkin:
+#        base-url: http://127.0.0.1:3080
+    sleuth:
+        enabled: false
     cloud:
       stream:
         kafka:

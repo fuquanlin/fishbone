@@ -17,14 +17,16 @@ spring:
     boot:
         admin:
             url: http://localhost:5080
-
-sleuth:
-    sampler:
-      percentage: 1.0
+#    zipkin:
+#        base-url: http://127.0.0.1:3080
+    sleuth:
+        sampler:
+          percentage: 1.0
     cloud:
-      stream:
-        kafka:
-          binder:
-            brokers: localhost:9092
-            zk-nodes: localhost:2181
+        stream:
+          kafka:
+            binder:
+              brokers: localhost:9092
+              zk-nodes: localhost:2181
+
 
