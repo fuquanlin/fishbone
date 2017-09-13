@@ -1,0 +1,20 @@
+server:
+    port: 8001
+    context-path: /auth
+    session:
+          timeout: 600
+spring:
+    application:
+        name: user-service
+
+security:
+  user:
+    password: password
+  oauth2:
+    client:
+      client-id: demo
+      client-secret: demo
+      scope: read, write
+      auto-approve-scopes: .*
+    authorization:
+      check-token-access: permitAll()

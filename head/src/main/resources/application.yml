@@ -1,0 +1,24 @@
+user-server: http://localhost:8001/auth
+account-service:
+    url: http://localhost:8002
+
+server:
+    port: 8000
+    session:
+          timeout: 600
+spring:
+    application:
+        name: head-service
+
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      client-id: demo
+      client-secret: demo
+      access-token-uri: ${user-server}/oauth/token
+      user-authorization-uri: ${user-server}/oauth/authorize
+      scope: read, write
+    resource:
+      token-info-uri: ${user-server}/oauth/check_token
