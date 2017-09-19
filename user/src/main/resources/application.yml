@@ -3,6 +3,12 @@ server:
     context-path: /auth
     session:
           timeout: 600
+
+app:
+    db:
+          url: jdbc:mysql://localhost:3306/fishbone?serverTimezone=UTC
+          username: root
+          password: root
 spring:
     application:
         name: user-service
