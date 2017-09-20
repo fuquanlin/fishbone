@@ -22,3 +22,9 @@ security:
       scope: read, write
     resource:
       token-info-uri: ${user-server}/oauth/check_token
+  ignored: /hello
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9080/eureka/

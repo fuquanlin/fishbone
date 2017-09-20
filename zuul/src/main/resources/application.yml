@@ -9,6 +9,12 @@ server:
 app:
     name: zuul
 
-zuul:
-    routes:
-          api: /api/**
+spring:
+  application:
+    name: zuul
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9080/eureka/

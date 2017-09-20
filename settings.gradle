@@ -4,6 +4,7 @@ include 'user'
 include 'account'
 include 'pay'
 include 'settle'
+include 'idgen'
 include 'tail'
 
 include 'eureka'
@@ -12,4 +13,5 @@ include 'config'
 include 'admin'
 include 'ribbon'
 include 'sleuth'
+
 

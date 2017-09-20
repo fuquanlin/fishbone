@@ -3,6 +3,7 @@ package cn.fql.head;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
@@ -18,6 +19,7 @@ import java.util.Date;
 
 @SpringBootApplication
 @EnableOAuth2Sso
+@EnableEurekaClient
 public class HeadMain {
 
     @Bean

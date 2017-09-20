@@ -24,7 +24,13 @@ public class TestController {
 
     @RequestMapping(value = "/test", method = {RequestMethod.GET})
     public String test(HttpSession session) {
-        String result = restTemplate.getForObject(accountUrl+"test",String.class);
+        String result = restTemplate.getForObject(accountUrl + "test", String.class);
         return result;
+    }
+
+    @RequestMapping(value = "/hello", method = {RequestMethod.GET})
+    public String hello(HttpSession session) {
+        System.out.println("hello");
+        return "hello";
     }
 }
