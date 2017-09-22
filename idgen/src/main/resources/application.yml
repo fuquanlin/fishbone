@@ -1,0 +1,7 @@
+server:
+    port: 8005
+    session:
+          timeout: 600
+spring:
+    application:
+        name: idgen-service
