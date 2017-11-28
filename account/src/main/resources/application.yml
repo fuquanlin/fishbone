@@ -1,4 +1,4 @@
-user-server: http://localhost:8001/auth
+#user-server: http://localhost:8001/auth
 
 
 server:
@@ -9,11 +9,18 @@ spring:
     application:
         name: account-service
 
-security:
-    oauth2:
-        resource:
-          token-info-uri: ${user-server}/oauth/check_token
-        client:
-          client-id: demo
-          client-secret: demo
+app:
+    name: fishbone
+    db:
+          url: jdbc:mysql://localhost:3306/fishbone?serverTimezone=UTC
+          username: root
+          password: root
+
+#security:
+#    oauth2:
+#        resource:
+#          token-info-uri: ${user-server}/oauth/check_token
+#        client:
+#          client-id: demo
+#          client-secret: demo
 #debug: true

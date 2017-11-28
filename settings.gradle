@@ -5,6 +5,7 @@ include 'account'
 include 'pay'
 include 'settle'
 include 'idgen'
+include 'lock'
 include 'tail'
 
 include 'eureka'
