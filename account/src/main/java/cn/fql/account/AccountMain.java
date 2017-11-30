@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import org.springframework.security.config.http.SessionCreationPolicy;
 //import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 //import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.util.StopWatch;
 
 import java.text.SimpleDateFormat;
@@ -17,6 +19,8 @@ import java.util.Date;
  */
 @SpringBootApplication
 //@EnableResourceServer
+@EnableDiscoveryClient
+@EnableFeignClients
 public class AccountMain { //extends ResourceServerConfigurerAdapter {
 
 //    @Override

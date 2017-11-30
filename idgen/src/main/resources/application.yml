@@ -5,3 +5,8 @@ server:
 spring:
     application:
         name: idgen-service
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:9080/eureka/

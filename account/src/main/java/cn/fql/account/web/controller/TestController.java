@@ -1,7 +1,9 @@
 package cn.fql.account.web.controller;
 
 import cn.fql.account.dao.mapper.AcctTypeMapper;
+import cn.fql.account.model.domain.AcctFlow;
 import cn.fql.account.model.domain.AcctType;
+import cn.fql.account.service.AccountFlowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +21,9 @@ public class TestController {
     @Autowired
     AcctTypeMapper acctTypeMapper;
 
+    @Autowired
+    AccountFlowService accountFlowService;
+
     @RequestMapping(value = "/test", method = {RequestMethod.GET})
     public String test(HttpSession session) {
         return "account success";
@@ -29,4 +34,13 @@ public class TestController {
         List<AcctType> acctTypes = acctTypeMapper.selectAll();
         return acctTypes;
     }
+
+    @RequestMapping(value = "/test3", method = {RequestMethod.GET})
+    public String test3(HttpSession session) {
+        AcctFlow acctFlow = new AcctFlow();
+        String flowNo = accountFlowService.createFlow(acctFlow);
+        return flowNo;
+    }
+
+
 }
