@@ -2,7 +2,7 @@ package cn.fql.sleuth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.sleuth.zipkin.stream.EnableZipkinStreamServer;
 import org.springframework.util.StopWatch;
 
@@ -13,7 +13,7 @@ import java.util.Date;
  * Created by fuquanlin on 2017/1/16.
  */
 @SpringBootApplication
-@EnableDiscoveryClient
+@EnableEurekaClient
 @EnableZipkinStreamServer
 public class SleuthMain {
 

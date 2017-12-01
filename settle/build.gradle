@@ -26,6 +26,8 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-batch:1.4.3.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-actuator:1.4.3.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-web:1.4.3.RELEASE'
+    compile 'com.alibaba:druid:1.0.20'
+    compile 'mysql:mysql-connector-java:5.1.40'
 
 
     testCompile 'junit:junit:4.11'

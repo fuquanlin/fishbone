@@ -4,7 +4,7 @@ import de.codecentric.boot.admin.config.EnableAdminServer;
 import org.apache.commons.lang.time.StopWatch;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,7 +14,7 @@ import java.util.Date;
  */
 @SpringBootApplication
 @EnableAdminServer
-@EnableDiscoveryClient
+@EnableEurekaClient
 public class AdminMain {
     public static void main(String[] args) {
         StopWatch sw = new StopWatch();
