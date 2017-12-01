@@ -1,0 +1,23 @@
+server:
+    port: 8004
+    session:
+          timeout: 600
+spring:
+    application:
+        name: settle-service
+    batch:
+      initializer:
+        enabled: false
+      tablePrefix: bat_
+
+app:
+    name: settle
+    db:
+          url: jdbc:mysql://localhost:3306/fishbone?serverTimezone=UTC
+          username: root
+          password: root
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:9080/eureka/

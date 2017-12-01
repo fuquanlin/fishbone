@@ -22,6 +22,9 @@ create table acct_flow (
   create_time datetime not null,
   update_time datetime not null,
   tran_no VARCHAR(50) not null,
+  acct_no VARCHAR(50) not null,
+  acct_no_dest VARCHAR(50) not null,
+  direction INT(1) not null,
   remark VARCHAR(255),
   external_id VARCHAR(255),
   balance decimal(20,6) not null,
@@ -39,13 +42,10 @@ create table acct_type (
   PRIMARY KEY (type_no)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*分录*/
+/*分录常量*/
 create table acct_transaction (
   tran_no VARCHAR(50) not null,
   tran_name VARCHAR(100) not null,
-  acct_no VARCHAR(50) not null,
-  acct_no_dest VARCHAR(50) not null,
-  direction INT(1) not null,
   PRIMARY KEY (tran_no)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

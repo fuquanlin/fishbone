@@ -7,8 +7,5 @@
     -->
     <id column="tran_no" jdbcType="VARCHAR" property="tranNo" />
     <result column="tran_name" jdbcType="VARCHAR" property="tranName" />
-    <result column="acct_no" jdbcType="VARCHAR" property="acctNo" />
-    <result column="acct_no_dest" jdbcType="VARCHAR" property="acctNoDest" />
-    <result column="direction" jdbcType="INTEGER" property="direction" />
   </resultMap>
 </mapper>

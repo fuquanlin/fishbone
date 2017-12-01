@@ -1,4 +1,4 @@
-package cn.fql.account.model.domain;
+package cn.fql.settle.model.domain;
 
 import java.math.BigDecimal;
 import java.util.Date;
