@@ -3,6 +3,7 @@ package cn.fql.settle.config;
 import cn.fql.settle.batch.AcctCoreReader;
 import cn.fql.settle.batch.AcctFlowSumProcessor;
 import cn.fql.settle.batch.SettleMonthReportWriter;
+import cn.fql.settle.service.SettleService;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.JobRegistry;
@@ -10,17 +11,19 @@ import org.springframework.batch.core.configuration.annotation.EnableBatchProces
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.support.MapJobRegistry;
+import org.springframework.batch.core.explore.JobExplorer;
+import org.springframework.batch.core.explore.support.JobExplorerFactoryBean;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.launch.support.SimpleJobLauncher;
 import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.repository.dao.DefaultExecutionContextSerializer;
 import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
 import org.springframework.batch.support.transaction.ResourcelessTransactionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -55,6 +58,23 @@ public class BatchConfig {
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private SettleService settleService;
+
+    @Bean
+    public AcctCoreReader acctCoreReader() {
+        return new AcctCoreReader();
+    }
+
+    @Bean
+    public AcctFlowSumProcessor acctFlowSumProcessor() {
+        return new AcctFlowSumProcessor();
+    }
+
+    @Bean
+    public SettleMonthReportWriter settleMonthReportWriter() {
+        return new SettleMonthReportWriter();
+    }
 
 
     @Bean
@@ -69,13 +89,12 @@ public class BatchConfig {
     public Step calculateSettle() {
         return stepBuilderFactory().get("importBillDetail")
                 .chunk(100)
-                .reader(new AcctCoreReader())
-                .processor(new AcctFlowSumProcessor())
-                .writer(new SettleMonthReportWriter())
+                .reader(acctCoreReader())
+                .processor(acctFlowSumProcessor())
+                .writer(settleMonthReportWriter())
                 .taskExecutor(taskExecutor())
                 .build();
     }
-
 
 
     /*
@@ -114,6 +133,7 @@ public class BatchConfig {
         JobRepositoryFactoryBean factory = new JobRepositoryFactoryBean();
         factory.setDataSource(dataSource);
         factory.setTransactionManager(resourcelessTransactionManager());
+        factory.setSerializer(new DefaultExecutionContextSerializer());
         factory.setTablePrefix("bat_");
         factory.afterPropertiesSet();
         return factory;
@@ -124,6 +144,20 @@ public class BatchConfig {
     public JobRegistry jobRegistry() {
         JobRegistry jobRegistry = new MapJobRegistry();
         return jobRegistry;
+    }
+
+    @Bean
+    public JobExplorerFactoryBean jobExplorerFactoryBean() {
+        JobExplorerFactoryBean jobExplorerFactoryBean = new JobExplorerFactoryBean();
+        jobExplorerFactoryBean.setDataSource(dataSource);
+        jobExplorerFactoryBean.setSerializer(new DefaultExecutionContextSerializer());
+        jobExplorerFactoryBean.setTablePrefix("bat_");
+        return jobExplorerFactoryBean;
+    }
+
+    @Bean
+    public JobExplorer jobExplorer() throws Exception {
+        return jobExplorerFactoryBean().getObject();
     }
 
     public PlatformTransactionManager resourcelessTransactionManager() {

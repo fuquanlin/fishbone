@@ -43,7 +43,7 @@ public class DAOConfig {
         SqlSessionFactoryBean ssfb = new SqlSessionFactoryBean();
         ssfb.setMapperLocations(mapperLocations);
         ssfb.setConfigLocation(configLocation);
-        ssfb.setTypeAliasesPackage("cn.fql.account.model.domain");
+        ssfb.setTypeAliasesPackage("cn.fql.settle.model.domain");
         return ssfb;
     }
 
@@ -52,7 +52,7 @@ public class DAOConfig {
     public static org.mybatis.spring.mapper.MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
-        mapperScannerConfigurer.setBasePackage("cn.fql.account.dao.mapper");
+        mapperScannerConfigurer.setBasePackage("cn.fql.settle.dao.mapper");
         mapperScannerConfigurer.setMapperHelper(getDefaultMapperHelper());
         return mapperScannerConfigurer;
     }

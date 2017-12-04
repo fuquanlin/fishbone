@@ -1,7 +1,10 @@
 package cn.fql.settle.batch;
 
 import cn.fql.settle.model.domain.AcctCore;
+import cn.fql.settle.service.SettleService;
 import org.springframework.batch.item.database.AbstractPagingItemReader;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -10,25 +13,20 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class AcctCoreReader extends AbstractPagingItemReader {
 
-    private int fetchSize;
 
-    //private
+    @Autowired
+    private SettleService settleService;
 
-
-    public void setFetchSize(int fetchSize) {
-        this.fetchSize = fetchSize;
-    }
 
     @Override
     protected void doReadPage() {
         if (results == null) {
             results = new CopyOnWriteArrayList<AcctCore>();
-        }
-        else {
+        } else {
             results.clear();
         }
 
-        //results.addAll(helper.readPage(getPage(), getPageSize(), fetchSize, parameterValues));
+        results.addAll(settleService.queryAcctCoreWithPagination(getPage(),getPageSize()));
     }
 
     @Override
