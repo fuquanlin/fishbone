@@ -52,3 +52,5 @@ create table acct_transaction (
 insert into acct_type(type_no, type_name, currency) VALUES ('1','资金','rmb');
 insert into acct_type(type_no, type_name, currency) VALUES ('2','资金','ffb');
 
+insert into acct_transaction(tran_no, tran_name) VALUES ('1001','转账');
+

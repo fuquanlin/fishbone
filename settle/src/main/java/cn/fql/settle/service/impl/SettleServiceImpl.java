@@ -8,6 +8,7 @@ import cn.fql.settle.model.domain.AcctFlow;
 import cn.fql.settle.model.domain.SettleMonthReport;
 import cn.fql.settle.service.SettleService;
 //import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageHelper;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
@@ -45,7 +46,7 @@ public class SettleServiceImpl implements SettleService {
 
     @Override
     public List<AcctCore> queryAcctCoreWithPagination(int page, int size) {
-        //PageHelper.startPage(page, size);
+        PageHelper.startPage(page, size);
         List<AcctCore> acctCores = acctCoreMapper.selectAll();
         return acctCores;
     }
@@ -65,7 +66,7 @@ public class SettleServiceImpl implements SettleService {
 
     @Override
     public void batchInsertSettleMonthReport(List<SettleMonthReport> settleMonthReports) {
-        //settleMonthReportMapper.batchInsert(settleMonthReports);
+        settleMonthReportMapper.batchInsert(settleMonthReports);
     }
 
     Random test = new Random();
