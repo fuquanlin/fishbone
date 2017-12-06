@@ -13,5 +13,5 @@ include 'zuul'
 include 'config'
 include 'admin'
 include 'sleuth'
-
+include 'job'
 
