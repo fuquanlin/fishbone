@@ -58,12 +58,12 @@ public class BatchConfig {
     @Autowired
     private DataSource dataSource;
 
-    @Autowired
-    private SettleService settleService;
 
     @Bean
     public AcctCoreReader acctCoreReader() {
-        return new AcctCoreReader();
+        AcctCoreReader acctCoreReader = new AcctCoreReader();
+        acctCoreReader.setPageSize(2);
+        return acctCoreReader;
     }
 
     @Bean

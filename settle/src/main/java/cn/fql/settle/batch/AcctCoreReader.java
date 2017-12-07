@@ -26,7 +26,7 @@ public class AcctCoreReader extends AbstractPagingItemReader {
             results.clear();
         }
 
-        results.addAll(settleService.queryAcctCoreWithPagination(getPage(),getPageSize()));
+        results.addAll(settleService.queryAcctCoreWithPagination(getPage()+1,getPageSize()));
     }
 
     @Override
