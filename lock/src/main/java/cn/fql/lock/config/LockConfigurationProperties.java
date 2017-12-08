@@ -7,17 +7,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(prefix = "cn.fql.lock")
 public class LockConfigurationProperties {
-    private String serverList;
     private String redisRegisterKey = "cn-fql-lock";
     private long redisKeyExpiredTimeMills = 5 * 60 * 1000;
-
-    public String getServerList() {
-        return serverList;
-    }
-
-    public void setServerList(String serverList) {
-        this.serverList = serverList;
-    }
 
     public String getRedisRegisterKey() {
         return redisRegisterKey;
