@@ -26,14 +26,14 @@ import java.util.concurrent.TimeUnit;
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 public class LockConfiguration {
 
-    @Bean
-    RedisConnectionFactory redisConnectionFactory() {
-        JedisConnectionFactory factory = new JedisConnectionFactory();
-        factory.setHostName("localhost");
-        factory.setPort(6379);
-        factory.setUsePool(true);
-        return factory;
-    }
+//    @Bean
+//    RedisConnectionFactory redisConnectionFactory() {
+//        JedisConnectionFactory factory = new JedisConnectionFactory();
+//        factory.setHostName("localhost");
+//        factory.setPort(6379);
+//        factory.setUsePool(true);
+//        return factory;
+//    }
 
     @Configuration
     //@ConditionalOnClass(RedisConnectionFactory.class)
